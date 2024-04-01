@@ -1,0 +1,114 @@
+import React from 'react';
+import { Image } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+
+// Screens ✨
+import LoginView from './src/screens/LoginView';
+import Home from './src/screens/Home';
+import Inventarios from './src/screens/Inventarios';
+import Pendiente from './src/screens/Pendiente';
+
+const Tab = createBottomTabNavigator();
+
+const Navigation = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName='Home'
+      screenOptions={{
+        tabBarActiveTintColor: '#048cba'
+      }}
+    >
+
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          title: 'Inicio',
+          tabBarLabel: 'Inicio',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="home" size={size} color={color} />
+          ),
+          headerTransparent: false,
+          headerTintColor: '#fefefe',
+          headerStyle: { backgroundColor: '#048cbad8' } 
+        }} />
+
+      <Tab.Screen name="Inventarios" component={Inventarios}
+        options={{
+          title: 'Inventario',
+          tabBarLabel: 'Inventario',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="inventory" size={size} color={color} />
+          )
+        }}
+      />
+
+      <Tab.Screen name="Contabilidad" component={Pendiente}
+        options={{
+          title: 'Contabilidad',
+          tabBarLabel: 'Contabilidad',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="bookshelf" size={24} color={color} />
+          )
+        }}
+      />
+
+      <Tab.Screen name="Personas" component={Pendiente}
+        options={{
+          title: 'Personas',
+          tabBarLabel: 'Personas',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="people-outline" size={size} color={color} />
+          )
+        }}
+      />
+
+    </Tab.Navigator>
+  );
+};
+
+const Stack = createNativeStackNavigator();
+
+const MyStack = () => {
+  return (
+    <NavigationContainer
+      initialRouteName='HomeTab'
+    >
+
+      <Stack.Navigator>
+
+        <Stack.Screen
+          name="Login"
+          component={LoginView}
+          options={{
+            title: 'Inicio de Sesión',
+            headerTitleAlign: 'center',
+            headerTransparent: true,
+            headerShown: true
+          }}
+        />
+
+        <Stack.Screen
+          name="HomeTab"
+          component={Navigation}
+          options={{
+            headerShown: false
+          }}
+        />
+
+      </Stack.Navigator>
+
+    </NavigationContainer>
+  );
+}
+
+
+export default MyStack;
+
