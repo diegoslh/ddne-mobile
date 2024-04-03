@@ -16,11 +16,11 @@ function Personas() {
     return (
         <View style={styles.contenedor}>
             {
-                opcion === 'Informe' ? (
+                opcion === 'Proveedores' ? (
                     <Pendiente/>
-                ) : opcion === 'Transacciones' ? (
+                ) : opcion === 'Clientes' ? (
                     <Pendiente/>
-                ) : opcion === 'Productos' ? (
+                ) : opcion === 'Usuarios' ? (
                     <Pendiente/>
                 ) : (
                     <View style={styles.opciones}>

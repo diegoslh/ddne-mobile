@@ -16,11 +16,11 @@ function Inventarios() {
     return (
         <View style={styles.contenedor}>
             {
-                opcion === 'Informe' ? (
+                opcion === 'Inventario Insumos' ? (
                     <Pendiente/>
-                ) : opcion === 'Transacciones' ? (
+                ) : opcion === 'Invetario Produccion' ? (
                     <Pendiente/>
-                ) : opcion === 'Productos' ? (
+                ) : opcion === 'Segimiento de Lote' ? (
                     <Pendiente/>
                 ) : (
                     <View style={styles.opciones}>
