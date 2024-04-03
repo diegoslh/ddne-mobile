@@ -13,6 +13,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import LoginView from './src/screens/LoginView';
 import Home from './src/screens/Home';
 import Inventarios from './src/screens/Inventarios';
+import Contabilidad from './src/screens/Contabilidad';
+import Personas from './src/screens/Personas';
 import Pendiente from './src/screens/Pendiente';
 
 const Tab = createBottomTabNavigator();
@@ -50,17 +52,19 @@ const Navigation = () => {
         }}
       />
 
-      <Tab.Screen name="Contabilidad" component={Pendiente}
+      <Tab.Screen 
+        name="Contabilidad" 
+        component={Contabilidad}
         options={{
           title: 'Contabilidad',
           tabBarLabel: 'Contabilidad',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bookshelf" size={24} color={color} />
+            <MaterialCommunityIcons name="bookshelf" size={size} color={color} />
           )
         }}
       />
 
-      <Tab.Screen name="Personas" component={Pendiente}
+      <Tab.Screen name="Personas" component={Personas}
         options={{
           title: 'Personas',
           tabBarLabel: 'Personas',
