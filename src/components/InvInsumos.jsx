@@ -6,11 +6,13 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  ToastAndroid
+  // ToastAndroid
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { getData } from '../helpers/getData';
 import axios from 'axios';
+import CardRegistroExpandible from './CardRegistroExpandible';
+import Loading from './Loading';
 
 // API ⚙️
 const ENDPOINT = 'http://10.0.2.2:5000/inv/insumos';
@@ -18,7 +20,63 @@ const ENDPOINT = 'http://10.0.2.2:5000/inv/insumos';
 const InvInsumos = () => {
 
   // Hooks 🔗
+  const [isLoading, setIsLoading] = useState(true);
   const [registros, setRegistros] = useState([]);
+  //   {
+  //     "id_inventario_insumos": 110,
+  //     "fk_n_transaccion": 11,
+  //     "fk_tipo_insumo": "Rollo Carton",
+  //     "consecutivo_insumo": "N/A",
+  //     "peso_insumo": "40.00",
+  //     "unidades": 10,
+  //     "fk_estado": "Recibido",
+  //     "fecha_planificada": "2023-06-25T05:00:00.000Z",
+  //     "fecha_recepcion": "2023-07-01T05:00:00.000Z",
+  //     "fecha_registro": "2023-06-01T05:00:00.000Z",
+  //     "fk_proveedor": "45965784",
+  //     "fk_ti_proveedor": "CC",
+  //     "fk_usuario": 2,
+  //     "estado_registro": 1,
+  //     "alias": "J.operaciones",
+  //     "nombre_empresa": "Propandina S.A.S"
+  //   },
+  //   {
+  //     "id_inventario_insumos": 111,
+  //     "fk_n_transaccion": 11,
+  //     "fk_tipo_insumo": "Parafina",
+  //     "consecutivo_insumo": "N/A",
+  //     "peso_insumo": "40.00",
+  //     "unidades": 10,
+  //     "fk_estado": "Recibido",
+  //     "fecha_planificada": "2023-06-25T05:00:00.000Z",
+  //     "fecha_recepcion": "2023-07-01T05:00:00.000Z",
+  //     "fecha_registro": "2023-06-01T05:00:00.000Z",
+  //     "fk_proveedor": "45965784",
+  //     "fk_ti_proveedor": "CC",
+  //     "fk_usuario": 2,
+  //     "estado_registro": 1,
+  //     "alias": "J.operaciones",
+  //     "nombre_empresa": "Propandina S.A.S"
+  //   },
+  //   {
+  //     "id_inventario_insumos": 112,
+  //     "fk_n_transaccion": 11,
+  //     "fk_tipo_insumo": "Rollo Carton",
+  //     "consecutivo_insumo": "N/A",
+  //     "peso_insumo": "40.00",
+  //     "unidades": 10,
+  //     "fk_estado": "Recibido",
+  //     "fecha_planificada": "2023-06-25T05:00:00.000Z",
+  //     "fecha_recepcion": "2023-07-01T05:00:00.000Z",
+  //     "fecha_registro": "2023-06-01T05:00:00.000Z",
+  //     "fk_proveedor": "45965784",
+  //     "fk_ti_proveedor": "CC",
+  //     "fk_usuario": 2,
+  //     "estado_registro": 1,
+  //     "alias": "J.operaciones",
+  //     "nombre_empresa": "Propandina S.A.S"
+  //   },
+  // ]);
 
   //🔸 Solicitud de Datos a API
   useEffect(() => {
@@ -33,6 +91,8 @@ const InvInsumos = () => {
           ? setRegistros(response.data.data)
           : setRegistros([]);
         ;
+        setIsLoading(false);
+
       } catch (error) {
         setRegistros(false);
         console.log(error);
@@ -46,62 +106,61 @@ const InvInsumos = () => {
   // console.log('>>> ', registros)
 
   return (
-    <SafeAreaView style={styles.container}>
+    <>
+      {isLoading
+        ? <Loading />
+        : (
+          <SafeAreaView style={styles.container}>
+            <View style={styles.containerInventarios}>
+              <Text style={{ fontSize: 21, color: 'white' }}>Registros Insumos</Text>
+            </View>
 
-      <View style={styles.containerInventarios}>
-        <Text style={{ fontSize: 21 }}>Registros Insumos</Text>
-      </View>
+            <ScrollView style={styles.scrollView} >
+              {
+                registros && registros.length > 0 ?
+                  registros.map(r => (
+                    <CardRegistroExpandible
+                      title={`${r.id_inventario_insumos} - ${r.fk_tipo_insumo}`}
+                      id={r.id_inventario_insumos}
+                    >
+                      <Text
+                        style={styles.info_label}
+                        key={r.id_inventario_insumos + 'info_label'}
+                      >
+                        Estado: {'\n'}
+                        {r.fk_estado === 'En Espera'
+                          ? ('F. Llegada: ')
+                          : ('F. Recepción: ')
+                        } {'\n'}
+                        Unidades: {'\n'}
+                        Peso: {'\n'}
+                        Proveedor:
+                      </Text>
 
-      <ScrollView style={styles.scrollView} >
-        {
-          registros && registros.length > 0 ?
-            registros.map(r => (<View style={styles.card_registro}>
-              <Text key={r.id_inventario_insumos} style={styles.card_title}>
-                {r.id_inventario_insumos} - {r.fk_tipo_insumo}
-              </Text>
-
-              <View style={styles.card_data}>
-                <Text 
-                  style={styles.info_label}
-                  key={r.id_inventario_insumos + 'info_label'}
-                >
-                  Estado: {'\n'}
-
-                  {
-                    r.fk_estado === 'En Espera' ? (
-                      'F. Llegada: '
-                    ) : (
-                      'F. Recepción: '
-                    )
-                  } {'\n'}
-
-                  Unidades: {'\n'}
-                  Peso: 
-                </Text>
-
-                <Text 
-                  style={styles.info_data}
-                  key={r.id_inventario_insumos + 'info_data'}
-                >
-                  {r.fk_estado} {'\n'}
-                  {
-                    r.fk_estado === 'En Espera' ? (
-                      r.fecha_planificada && r.fecha_planificada.split('T')[0]
-                    ) : (
-                      r.fecha_recepcion ? r.fecha_recepcion.split('T')[0] : 'No Aplica Fecha'
-                    )
-                  } {'\n'}
-                  {r.unidades} {'\n'}
-                  {r.peso_insumo}
-                </Text>
-              </View>
-
-            </View>))
-            : <Text>No hay registros disponibles</Text>
-        }
-      </ScrollView>
-
-    </SafeAreaView>
+                      <Text
+                        style={styles.info_data}
+                        key={r.id_inventario_insumos + 'info_data'}
+                      >
+                        {r.fk_estado + '\n'}
+                        {r.fk_estado === 'En Espera'
+                          ? r.fecha_planificada && r.fecha_planificada.split('T')[0]
+                          : (r.fecha_recepcion
+                            ? r.fecha_recepcion.split('T')[0]
+                            : 'No Aplica Fecha'
+                          )
+                        } {'\n'}
+                        {r.unidades + '\n'}
+                        {r.peso_insumo + ' kg' + '\n'}
+                        {r.nombre_empresa}
+                      </Text>
+                    </CardRegistroExpandible>
+                  )) : <Text>No hay registros disponibles</Text>
+              }
+            </ScrollView>
+          </SafeAreaView>
+        )
+      }
+    </>
   )
 }
 
@@ -115,11 +174,12 @@ const styles = StyleSheet.create({
     // borderWidth: 1
   },
   containerInventarios: {
-    height: '6%',
+    height: '5%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomWidth: 3,
-    borderBottomColor: 'lightblue',
+    backgroundColor: 'rgba(4, 140, 186, 0.85)',
+    // borderBottomWidth: 3,
+    // borderBottomColor: 'lightblue',
     // borderWidth: 1,
   },
   scrollView: {
@@ -130,29 +190,7 @@ const styles = StyleSheet.create({
     color: '#fefefe',
     fontSize: 42,
   },
-  card_registro: {
-    // borderBottomWidth: 1,
-    // borderBottomColor: '#000',
-    paddingTop: 10,
-  },
-  card_title:{
-    backgroundColor: '#cccccc54',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    color: '#048cbad8',
-    fontSize: 18,
-    fontWeight: '700',
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-    paddingLeft: 20,
-  },
-  card_data: {
-    flex: 1,
-    flexDirection: 'row',
-    gap: 15,   
-    paddingVertical: 5,
-    paddingHorizontal: 15
-  },
+
   info_label: {
     fontSize: 15,
     color: 'gray',

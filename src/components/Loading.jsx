@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
-import loadingGif from '../../assets/Loading.gif'
+import loadingGif from '../../assets/Loading3.gif'
 
 const Loading = () => {
   return (
