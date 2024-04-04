@@ -1,7 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { StyleSheet, Text, View, BackHandler } from 'react-native'
 
-const Pendiente = () => {
+import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
+
+const Pendiente = ({Opcion}) => {
+  
+  useHardwareBackHandler({ Opcion })
+
   return (
     <View>
       <Text>Pendiente</Text>
@@ -11,4 +16,4 @@ const Pendiente = () => {
 
 export default Pendiente
 
-const styles = StyleSheet.create({})
+// const styles = StyleSheet.create({})

@@ -20,9 +20,9 @@ function Inventarios() {
                 opcion === 'Inventario Insumos' ? (
                     <InvInsumos/>
                 ) : opcion === 'Invetario Produccion' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Segimiento de Lote' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : (
                     <View style={styles.opciones}>
                         <View style={styles.tarjeta}>

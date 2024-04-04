@@ -17,11 +17,11 @@ function Contabilidad() {
         <View style={styles.contenedor}>
             {
                 opcion === 'Informe' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Transacciones' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Productos' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : (
                     <View style={styles.opciones}>
                         <View style={styles.tarjeta}>
