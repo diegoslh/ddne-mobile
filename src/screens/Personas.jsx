@@ -17,11 +17,11 @@ function Personas() {
         <View style={styles.contenedor}>
             {
                 opcion === 'Proveedores' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Clientes' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Usuarios' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : (
                     <View style={styles.opciones}>
                         <View style={styles.tarjeta}>

@@ -17,11 +17,11 @@ function Inventarios() {
         <View style={styles.contenedor}>
             {
                 opcion === 'Inventario Insumos' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Invetario Produccion' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Segimiento de Lote' ? (
-                    <Pendiente/>
+                    <Pendiente Opcion={setOpcion}/>
                 ) : (
                     <View style={styles.opciones}>
                         <View style={styles.tarjeta}>
