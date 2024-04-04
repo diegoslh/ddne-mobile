@@ -98,8 +98,8 @@ const LoginView = () => {
             onChangeText={(text) => dataInto('password', text)}
           />
 
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          {/* <TouchableOpacity style={styles.button} onPress={() => redirect.navigate("HomeTab")}> */}
+          {/* <TouchableOpacity style={styles.button} onPress={handleSubmit}> */}
+          <TouchableOpacity style={styles.button} onPress={() => redirect.navigate("HomeTab")}>
             <Text style={styles.buttonText}>INGRESAR</Text>
           </TouchableOpacity>
         </View>

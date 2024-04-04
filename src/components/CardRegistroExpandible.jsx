@@ -14,9 +14,8 @@ const CardRegistroExpandible = ({ title, id, children }) => {
     <View style={styles.card_registro}>
 
       <TouchableOpacity
-        key={id}
+        key={id + 'info_title'}
         onPress={() => setExpandir(!expandir)}
-        // style={{flexDirection: 'row'}}
       >
         <Text style={styles.card_title}>         
           {title} 
@@ -30,7 +29,7 @@ const CardRegistroExpandible = ({ title, id, children }) => {
         expandir && (
           <View
             style={styles.card_data}
-          key={id + 'info'}
+            key={id + 'info'}
           >
             {children}
           </View>

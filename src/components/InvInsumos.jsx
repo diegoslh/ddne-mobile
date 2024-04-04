@@ -6,22 +6,25 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  // ToastAndroid
+  // ToastAndroid,  
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { getData } from '../helpers/getData';
 import axios from 'axios';
+import useHardwareBackHandler from '../hooks/useHardwareBackHandler';
 import CardRegistroExpandible from './CardRegistroExpandible';
 import Loading from './Loading';
 
 // API ⚙️
 const ENDPOINT = 'http://10.0.2.2:5000/inv/insumos';
 
-const InvInsumos = () => {
+const InvInsumos = ({Opcion}) => {
 
   // Hooks 🔗
   const [isLoading, setIsLoading] = useState(true);
   const [registros, setRegistros] = useState([]);
+  useHardwareBackHandler({ Opcion })
+
   //   {
   //     "id_inventario_insumos": 110,
   //     "fk_n_transaccion": 11,
@@ -111,9 +114,10 @@ const InvInsumos = () => {
         ? <Loading />
         : (
           <SafeAreaView style={styles.container}>
-            <View style={styles.containerInventarios}>
-              <Text style={{ fontSize: 21, color: 'white' }}>Registros Insumos</Text>
+            <View style={styles.container_title}>
+              <Text style={styles.title_page}>Registros Insumos</Text>
             </View>
+
 
             <ScrollView style={styles.scrollView} >
               {
@@ -154,7 +158,7 @@ const InvInsumos = () => {
                         {r.nombre_empresa}
                       </Text>
                     </CardRegistroExpandible>
-                  )) : <Text>No hay registros disponibles</Text>
+                  )) : <Text style={styles.mensaje_vacio}> No hay registros disponibles ✖️</Text>
               }
             </ScrollView>
           </SafeAreaView>
@@ -173,18 +177,29 @@ const styles = StyleSheet.create({
     // paddingTop: StatusBar.currentHeight,
     // borderWidth: 1
   },
-  containerInventarios: {
-    height: '5%',
+  container_title: {
+    height: '6%',
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingTop: 5,
+    marginBottom: '3%',
+
     backgroundColor: 'rgba(4, 140, 186, 0.85)',
-    // borderBottomWidth: 3,
-    // borderBottomColor: 'lightblue',
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
+    // borderBottomWidth: 2,
+    // borderBottomColor: 'rgb(4, 140, 186)',
     // borderWidth: 1,
   },
   scrollView: {
     flex: 1,
     paddingHorizontal: 5,
+  },
+  title_page: {
+    fontSize: 21,
+    color: 'white',
+    fontWeight: '600'
   },
   text: {
     color: '#fefefe',
@@ -201,5 +216,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '500',
     lineHeight: 28,
+  },
+  mensaje_vacio: {
+    fontSize: 20,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginTop: '5%'
   }
 })

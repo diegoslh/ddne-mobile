@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
 import Pendiente from './Pendiente';
 import InvInsumos from '../components/InvInsumos';
+import InvProduccion from '../components/InvProduccion';
 
 function Inventarios() {
 
@@ -19,8 +20,8 @@ function Inventarios() {
             {
                 opcion === 'Inventario Insumos' ? (
                     <InvInsumos Opcion={setOpcion}/>
-                ) : opcion === 'Invetario Produccion' ? (
-                    <Pendiente Opcion={setOpcion}/>
+                ) : opcion === 'Inventario Produccion' ? (
+                    <InvProduccion Opcion={setOpcion}/>
                 ) : opcion === 'Segimiento de Lote' ? (
                     <Pendiente Opcion={setOpcion}/>
                 ) : (
@@ -36,19 +37,19 @@ function Inventarios() {
                         <View style={styles.tarjeta}>
                             <TouchableOpacity 
                                 style={styles.boton}
-                                onPress={() => setOpcion('Invetario Produccion')}
+                                onPress={() => setOpcion('Inventario Produccion')}
                             >
-                                <Text style={styles.tittle}>Invetario Produccion</Text>
+                                <Text style={styles.tittle}>Inventario Producción</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.tarjeta}>
+                        {/* <View style={styles.tarjeta}>
                             <TouchableOpacity 
                                 style={styles.boton}
                                 onPress={() => setOpcion('Segimiento de Lote')}
                             >
                                 <Text style={styles.tittle}>Segimiento de Lote</Text>
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
                     </View>
                 )
             }

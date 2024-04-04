@@ -6,23 +6,26 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  ToastAndroid
+  // ToastAndroid,  
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { getData } from '../helpers/getData';
 import axios from 'axios';
+import useHardwareBackHandler from '../hooks/useHardwareBackHandler';
+import CardRegistroExpandible from './CardRegistroExpandible';
+import Loading from './Loading';
 
 // API ⚙️
-const ENDPOINT = 'http://10.0.2.2:5000/inv/????';
+const ENDPOINT = 'http://10.0.2.2:5000/inv/produccion';
 
-const InvProduccion = () => {
+const InvProduccion = ({Opcion}) => {
 
   // Hooks 🔗
+  const [isLoading, setIsLoading] = useState(true);
   const [registros, setRegistros] = useState([]);
+  useHardwareBackHandler({ Opcion })
 
   //🔸 Solicitud de Datos a API
   useEffect(() => {
-    // getData(ENDPOINT, setRegistros);
 
     const obtenerDatos = async () => {
       try {
@@ -33,6 +36,8 @@ const InvProduccion = () => {
           ? setRegistros(response.data.data)
           : setRegistros([]);
         ;
+        setIsLoading(false);
+
       } catch (error) {
         setRegistros(false);
         console.log(error);
@@ -46,62 +51,55 @@ const InvProduccion = () => {
   // console.log('>>> ', registros)
 
   return (
-    <SafeAreaView style={styles.container}>
+    <>
+      {isLoading
+        ? <Loading />
+        : (
+          <SafeAreaView style={styles.container}>
+            <View style={styles.container_title}>
+              <Text style={styles.title_page}>Registros Producción</Text>
+            </View>
 
-      <View style={styles.containerInventarios}>
-        <Text style={{ fontSize: 21 }}>Registros Producción</Text>
-      </View>
 
-      <ScrollView style={styles.scrollView} >
-        {
-          registros && registros.length > 0 ?
-            registros.map(r => (<View style={styles.card_registro}>
-              <Text key={r.id_inventario_insumos} style={styles.card_title}>
-                {r.id_inventario_insumos} - {r.fk_tipo_insumo}
-              </Text>
+            <ScrollView style={styles.scrollView} >
+              {
+                registros && registros.length > 0 ?
+                  registros.map(r => (
+                    <CardRegistroExpandible
+                      title={`${r.id_inv_produccion} - ${r.fk_tipo_producto} ${r.id_precios}`}
+                      id={r.id_inv_produccion}
+                    >
+                      <Text
+                        style={styles.info_label}
+                        key={r.id_inv_produccion + 'info_label'}
+                      >
+                        N° Lote: {'\n'}                        
+                        Medida: {'\n'}
+                        Peso: {'\n'}
+                        Color: {'\n'}
+                        Precio: {'\n'}
+                        F. Registro:
+                      </Text>
 
-              <View style={styles.card_data}>
-                <Text 
-                  style={styles.info_label}
-                  key={r.id_inventario_insumos + 'info_label'}
-                >
-                  Estado: {'\n'}
-
-                  {
-                    r.fk_estado === 'En Espera' ? (
-                      'F. Llegada: '
-                    ) : (
-                      'F. Recepción: '
-                    )
-                  } {'\n'}
-
-                  Unidades: {'\n'}
-                  Peso: 
-                </Text>
-
-                <Text 
-                  style={styles.info_data}
-                  key={r.id_inventario_insumos + 'info_data'}
-                >
-                  {r.fk_estado} {'\n'}
-                  {
-                    r.fk_estado === 'En Espera' ? (
-                      r.fecha_planificada && r.fecha_planificada.split('T')[0]
-                    ) : (
-                      r.fecha_recepcion ? r.fecha_recepcion.split('T')[0] : 'No Aplica Fecha'
-                    )
-                  } {'\n'}
-                  {r.unidades} {'\n'}
-                  {r.peso_insumo}
-                </Text>
-              </View>
-
-            </View>))
-            : <Text>No hay registros disponibles</Text>
-        }
-      </ScrollView>
-
-    </SafeAreaView>
+                      <Text
+                        style={styles.info_data}
+                        key={r.id_inv_produccion + 'info_data'}
+                      >
+                        {r.id_rollo_jumbo + '\n'}
+                        {r.unidad_medida + '\n'}
+                        {r.peso_producto + ' kg' + '\n'}
+                        {r.fk_color + '\n'}
+                        $ {r.precio + '\n' }
+                        {r.fecha_registro.split('T')[0]}
+                      </Text>
+                    </CardRegistroExpandible>
+                  )) : <Text style={styles.mensaje_vacio}> No hay registros disponibles ✖️</Text>
+              }
+            </ScrollView>
+          </SafeAreaView>
+        )
+      }
+    </>
   )
 }
 
@@ -114,45 +112,35 @@ const styles = StyleSheet.create({
     // paddingTop: StatusBar.currentHeight,
     // borderWidth: 1
   },
-  containerInventarios: {
+  container_title: {
     height: '6%',
     justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 3,
-    borderBottomColor: 'lightblue',
+    // alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingTop: 5,
+    marginBottom: '3%',
+
+    backgroundColor: 'rgba(4, 140, 186, 0.85)',
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
+    // borderBottomWidth: 2,
+    // borderBottomColor: 'rgb(4, 140, 186)',
     // borderWidth: 1,
   },
   scrollView: {
     flex: 1,
     paddingHorizontal: 5,
   },
+  title_page: {
+    fontSize: 21,
+    color: 'white',
+    fontWeight: '600'
+  },
   text: {
     color: '#fefefe',
     fontSize: 42,
   },
-  card_registro: {
-    // borderBottomWidth: 1,
-    // borderBottomColor: '#000',
-    paddingTop: 10,
-  },
-  card_title:{
-    backgroundColor: '#cccccc54',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    color: '#048cbad8',
-    fontSize: 18,
-    fontWeight: '700',
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-    paddingLeft: 20,
-  },
-  card_data: {
-    flex: 1,
-    flexDirection: 'row',
-    gap: 15,   
-    paddingVertical: 5,
-    paddingHorizontal: 15
-  },
+
   info_label: {
     fontSize: 15,
     color: 'gray',
@@ -163,5 +151,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '500',
     lineHeight: 28,
+  },
+  mensaje_vacio: {
+    fontSize: 20,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginTop: '5%'
   }
 })
