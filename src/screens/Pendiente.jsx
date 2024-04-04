@@ -1,22 +1,11 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, BackHandler } from 'react-native'
 
+import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
+
 const Pendiente = ({Opcion}) => {
-
-useEffect(() => {
-  const backAction = () => {
-    console.log('El usuario ha presionado el botón de retroceso');
-    Opcion(null)
-    return true;
-  }
-
-  const backHandler = BackHandler.addEventListener(
-    'hardwareBackPress',
-    backAction
-  )
-
-  return () => backHandler.remove();
-})
+  
+  useHardwareBackHandler({ Opcion })
 
   return (
     <View>
