@@ -18,7 +18,7 @@ function Inventarios() {
         <View style={styles.contenedor}>
             {
                 opcion === 'Inventario Insumos' ? (
-                    <InvInsumos/>
+                    <InvInsumos Opcion={setOpcion}/>
                 ) : opcion === 'Invetario Produccion' ? (
                     <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Segimiento de Lote' ? (
