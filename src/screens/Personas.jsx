@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
 import Pendiente from './Pendiente';
+import Clientes from './Clientes';
 
 function Personas() {
 
@@ -19,7 +20,7 @@ function Personas() {
                 opcion === 'Proveedores' ? (
                     <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Clientes' ? (
-                    <Pendiente Opcion={setOpcion}/>
+                    <Clientes/>
                 ) : opcion === 'Usuarios' ? (
                     <Pendiente Opcion={setOpcion}/>
                 ) : (

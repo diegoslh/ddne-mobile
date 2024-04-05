@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
+
+import Transacciones from '../components/Transacciones';
 import Pendiente from './Pendiente';
 
 function Contabilidad() {
@@ -19,19 +21,19 @@ function Contabilidad() {
                 opcion === 'Informe' ? (
                     <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Transacciones' ? (
-                    <Pendiente Opcion={setOpcion}/>
+                    <Transacciones Opcion={setOpcion}/>
                 ) : opcion === 'Productos' ? (
                     <Pendiente Opcion={setOpcion}/>
                 ) : (
                     <View style={styles.opciones}>
-                        <View style={styles.tarjeta}>
+                        {/* <View style={styles.tarjeta}>
                             <TouchableOpacity 
                                 style={styles.boton}
                                 onPress={() => setOpcion('Informe')}
                             >
                                 <Text style={styles.tittle}>Informe Inventario</Text>
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
                         <View style={styles.tarjeta}>
                             <TouchableOpacity 
                                 style={styles.boton}
