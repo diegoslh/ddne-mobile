@@ -1,21 +1,23 @@
 
 import React, { useState } from 'react';
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  Image, 
-  StyleSheet, 
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
   // ToastAndroid 
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import LogoDDNE from '../../assets/LogoDDNE.png'
+import { LinearGradient } from 'expo-linear-gradient';
 
 //API ⚙️
-const ENDPOINT = 'http://10.0.2.2:5000/login';
+// const ENDPOINT = 'http://10.0.2.2:5000/login';
+const ENDPOINT = 'http://192.168.0.29:5000/login';
 
 const LoginView = () => {
 
@@ -39,12 +41,12 @@ const LoginView = () => {
     console.log('Formulario >> ', formData);
     try {
       const response = await axios.post(ENDPOINT, formData);
-
+      // console.log(response)
       if (response.data.success) {
-        
+
         //🔹 Almacena la información de la sesión en AsyncStorage
         const user = JSON.stringify(response.data.user.session);
-        await AsyncStorage.setItem('user_session', user);        
+        await AsyncStorage.setItem('user_session', user);
 
         redirect.navigate("HomeTab");
         return
@@ -55,19 +57,19 @@ const LoginView = () => {
 
     } catch (error) {
 
-      console.log(error.response.status)
+      // console.log(error.response.status)
       console.error('Error al enviar datos:', error);
-      
+
       // error.response.status === 401 ? ToastAndroid.show(` ${error.response.data.message}`, ToastAndroid.SHORT)
       // : ToastAndroid.show('❌ Error al enviar datos:', ToastAndroid.SHORT);
-      
+
     }
   };
 
   return (
-    
+
     <View style={styles.container}>
-      
+
       {/* Logo */}
       <View style={styles.logoContainer}>
         <Image source={LogoDDNE} style={styles.logo} />
@@ -76,15 +78,25 @@ const LoginView = () => {
       {/* Login */}
       <View style={styles.loginContainer}>
 
+        <LinearGradient
+          // colors={['#228fa0', '#023693', '#14264c70']}
+          // colors={['#050C1B', '#023693', '#228fa0']}
+          // colors={['#050C1B', '#1A4055', '#228fa0']}
+          colors={['#050C1B', '#1A4055', 'rgb(8, 140, 185)']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          // end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+
         <View style={styles.welcomeTextContainer}>
-          <Text style={styles.welcomeText}>Bienvenido a DDNE</Text>
+          <Text style={styles.welcomeText}>Bienvenido</Text>
         </View>
 
         <View style={styles.formContainer}>
           <Text style={styles.label}>Usuario</Text>
           <TextInput
             style={styles.input}
-            // placeholder="Usuario"
             value={formData.usuario}
             onChangeText={(text) => dataInto('usuario', text)}
           />
@@ -92,14 +104,13 @@ const LoginView = () => {
           <Text style={styles.label}>Contraseña</Text>
           <TextInput
             style={styles.input}
-            // placeholder="Contraseña"
             secureTextEntry={true}
             value={formData.password}
             onChangeText={(text) => dataInto('password', text)}
           />
 
-          {/* <TouchableOpacity style={styles.button} onPress={handleSubmit}> */}
-          <TouchableOpacity style={styles.button} onPress={() => redirect.navigate("HomeTab")}>
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+            {/* <TouchableOpacity style={styles.button} onPress={() => redirect.navigate("HomeTab")}> */}
             <Text style={styles.buttonText}>INGRESAR</Text>
           </TouchableOpacity>
         </View>
@@ -112,38 +123,189 @@ const LoginView = () => {
 
 export default LoginView;
 
+// Estilo 1
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'flex-end',
+//     // padding: 10
+//   },
+//   logoContainer: {
+//     width: '85%',
+//     height: 114,
+//     marginBottom: '25%',
+//     marginHorizontal: 'auto',
+//     // borderWidth: 1,  
+//   },
+//   logo: {
+//     width: '100%',
+//     height: '100%',
+//     // aspectRatio: 1,
+//     // borderWidth: 1,  
+//   },
+//   loginContainer: {
+//     width: '101%',
+//     height: '52%',
+//     paddingVertical: '13%',
+//     paddingHorizontal: 17,
+//     // borderRadius: 45,
+//     borderTopLeftRadius: 45,
+//     borderTopRightRadius: 45,
+//     backgroundColor: '#fff',
+//     borderWidth: 1,
+//     borderColor: '#023693',
+//   },
+//   welcomeTextContainer: {
+//     alignItems: 'center',
+//     marginBottom: '10%',
+//   },
+//   welcomeText: {
+//     fontSize: 29,
+//     fontWeight: 'bold',
+//     color: '#048cba',
+//   },
+//   formContainer: {
+//     paddingHorizontal: 20,
+//   },
+//   label: {
+//     fontSize: 16,
+//     marginBottom: 5,
+//     marginTop: 5
+//   },
+//   input: {
+//     fontSize: 15,
+//     marginBottom: 15,
+//     borderBottomWidth: 1,
+//     borderColor: '#6494ec',
+//     paddingVertical: 10,
+//     paddingHorizontal: 8
+//   },
+//   button: {
+//     backgroundColor: '#048cbad8',
+//     borderRadius: 30,
+//     paddingVertical: 12,
+//     alignItems: 'center',
+//     marginTop: '8%',
+//     width: '75%',
+//     alignSelf: 'center'
+//   },
+//   buttonText: {
+//     fontSize: 16,
+//     color: '#fff',
+//     fontWeight: 'bold'
+//   },
+// });
 
+// Estilo 2
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'flex-end',
+//     backgroundColor: '#fff'
+//     // padding: 10
+//   },
+//   logoContainer: {
+//     width: '85%',
+//     height: 114,
+//     marginBottom: '25%',
+//     marginHorizontal: 'auto',
+//     // borderWidth: 1,  
+//   },
+//   logo: {
+//     width: '100%',
+//     height: '100%',
+//     // aspectRatio: 1,
+//     // borderWidth: 1,  
+//   },
+//   loginContainer: {
+//     width: '101%',
+//     height: '54%',
+//     paddingVertical: '13%',
+//     paddingHorizontal: 17,
+//     // borderRadius: 45,
+//     borderTopLeftRadius: 45,
+//     borderTopRightRadius: 45,
+//     backgroundColor: '#023793c5',
+//     borderWidth: 1,
+//     borderColor: '#023693',
+//     overflow: 'hidden'
+//   },
+//   welcomeTextContainer: {
+//     alignItems: 'center',
+//     marginBottom: '10%',
+//   },
+//   welcomeText: {
+//     fontSize: 29,
+//     fontWeight: 'bold',
+//     color: '#fff',
+//   },
+//   formContainer: {
+//     paddingHorizontal: 20,
+//   },
+//   label: {
+//     fontSize: 16,
+//     marginBottom: 5,
+//     marginTop: 5,
+//     color: 'rgb(202, 200, 200)'
+//   },
+//   input: {
+//     fontSize: 15,
+//     marginBottom: 15,
+//     borderBottomWidth: 1,
+//     borderColor: 'rgb(34, 199, 255)',
+//     paddingVertical: 10,
+//     paddingHorizontal: 8,
+//     color: '#fff'
+//   },
+//   button: {
+//     backgroundColor: 'rgba(30, 198, 255, 0.85)',
+//     borderRadius: 30,
+//     paddingVertical: 12,
+//     alignItems: 'center',
+//     marginTop: '8%',
+//     width: '75%',
+//     alignSelf: 'center'
+//   },
+//   buttonText: {
+//     fontSize: 16,
+//     color: '#000',
+//     fontWeight: 'bold'
+//   },
+// });
+
+//Estilo Gradient
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
+    backgroundColor: '#fff',
+    borderTopColor: 'rgb(8, 140, 185)',
+    borderTopWidth: 2
     // padding: 10
   },
   logoContainer: {
     width: '85%',
     height: 114,
-    marginBottom: '18%',
+    marginBottom: '25%',
     marginHorizontal: 'auto',
     // borderWidth: 1,  
   },
   logo: {
     width: '100%',
     height: '100%',
-    // aspectRatio: 1,
     // borderWidth: 1,  
   },
   loginContainer: {
     width: '101%',
-    height: '52%',
+    height: '54%',
     paddingVertical: '13%',
     paddingHorizontal: 17,
-    // borderRadius: 45,
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#023693',
+    overflow: 'hidden'
   },
   welcomeTextContainer: {
     alignItems: 'center',
@@ -152,7 +314,7 @@ const styles = StyleSheet.create({
   welcomeText: {
     fontSize: 29,
     fontWeight: 'bold',
-    color: '#048cba',
+    color: '#fff',
   },
   formContainer: {
     paddingHorizontal: 20,
@@ -160,18 +322,20 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 5,
-    marginTop: 5
+    marginTop: 5,
+    color: 'rgb(202, 200, 200)'
   },
   input: {
     fontSize: 15,
     marginBottom: 15,
     borderBottomWidth: 1,
-    borderColor: '#6494ec',
+    borderColor: 'rgb(34, 199, 255)',
     paddingVertical: 10,
-    paddingHorizontal: 8
+    paddingHorizontal: 8,
+    color: '#fff'
   },
   button: {
-    backgroundColor: '#048cbad8',
+    backgroundColor: 'rgba(82, 231, 255, 0.85)',
     borderRadius: 30,
     paddingVertical: 12,
     alignItems: 'center',
@@ -181,7 +345,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#fff',
+    color: '#000',
     fontWeight: 'bold'
   },
 });
