@@ -45,6 +45,9 @@ const Clientes = ({ Opcion }) => {
           telefono={cliente.telefono}
           correo={cliente.correo}
           empresa={cliente.nombre_empresa}
+          direccion={cliente.direccion}
+          nit={cliente.nit}
+          desc_empresa={cliente.descripcion_empresa}
           id={cliente.persona_id}
           reload={reload}
         />

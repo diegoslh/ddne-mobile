@@ -5,15 +5,20 @@ import {
   View,
   Modal,
   TouchableOpacity,
-  // ToastAndroid,
+  ToastAndroid,
   TextInput,
 } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { axios } from 'axios';
+import { IPv4 } from '../../config';
 
 const transparent = 'rgba(0,0,0,0.5)';
+const ENDPOINT = `http://${IPv4}:5000/updateclient`;
 
-const EditClient = ({ nombres, apellidos, telefono, email, empresa, id }) => {
+
+
+const EditClient = ({ direccion, nit, desc_empresa, nombres, apellidos, telefono, email, empresa, id }) => {
+
   const [modalVisible, setModalVisible] = useState(false);
 
   const datos_iniciales = {
@@ -21,11 +26,11 @@ const EditClient = ({ nombres, apellidos, telefono, email, empresa, id }) => {
     nombres: nombres,
     apellidos: apellidos,
     telefono: telefono,
-    // direccion: direccion,
+    direccion: direccion,
     email: email,
-    // nit: nit, 
+    nit: nit, 
     empresa: empresa,
-    // desc_empresa: desc_empresa
+    desc_empresa: desc_empresa
   }
 
   const [data, setData] = useState(datos_iniciales);
@@ -39,34 +44,34 @@ const EditClient = ({ nombres, apellidos, telefono, email, empresa, id }) => {
 
   const handleSubmit = async () => {
 
-    console.log('Formulario >> ', datos_iniciales);
-    try {
-      const response = await axios.post(ENDPOINT, datos_iniciales);
-      // console.log(response)
-      if (response.data.success) {
+    console.log('Formulario >> ', data);
+    // try {
+    //   const response = await axios.put(ENDPOINT, data);
+    //   // console.log(response)
+    //   if (response.data.success) {
 
-        // redirect.navigate("HomeTab");
-        return
-      }
+    //     // redirect.navigate("HomeTab");
+    //     return
+    //   }
 
-      console.log(` ${response.data.message}`);
-      // ToastAndroid.show(` ${response.data.message}`, ToastAndroid.SHORT)
+    //   console.log(` ${response.data.message}`);
+    //   ToastAndroid.show(` ${response.data.message}`, ToastAndroid.SHORT)
 
-    } catch (error) {
+    // } catch (error) {
 
-      // console.log(error.response.status)
-      console.error('Error al enviar datos:', error);
+    //   // console.log(error.response.status)
+    //   console.error('Error al enviar datos:', error);
 
-      // error.response.status === 401 ? ToastAndroid.show(` ${error.response.data.message}`, ToastAndroid.SHORT)
-      // : ToastAndroid.show('❌ Error al enviar datos:', ToastAndroid.SHORT);
+    //   error.response.status === 401 ? ToastAndroid.show(` ${error.response.data.message}`, ToastAndroid.SHORT)
+    //   : ToastAndroid.show('❌ Error al enviar datos:', ToastAndroid.SHORT);
 
-    }
+    // }
   };
 
   return (
     <>
       <TouchableOpacity onPress={() => setModalVisible(true)}>
-        <Feather name="edit-3" size={24} color="black" />
+        <Feather name="edit-3" size={28} color="black" />
       </TouchableOpacity>
 
       <Modal
@@ -88,6 +93,7 @@ const EditClient = ({ nombres, apellidos, telefono, email, empresa, id }) => {
                 <TextInput
                   style={styles.input}
                   value={data.id}
+                  editable={false}
                   onChangeText={(value) => dataInto('id', value)}
                 />
               </View>
@@ -128,7 +134,7 @@ const EditClient = ({ nombres, apellidos, telefono, email, empresa, id }) => {
                 />
               </View>
 
-              {/* <View style={styles.inputContainer}>
+              <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Direccion</Text>
                 <TextInput
                   style={styles.input}
@@ -139,18 +145,30 @@ const EditClient = ({ nombres, apellidos, telefono, email, empresa, id }) => {
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>NIT</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} 
+                  value={data.nit}
+                  editable={false}
+                  onChangeText={(value) => dataInto('nit', value)}
+                />
               </View>
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Empresa</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} 
+                  value={data.empresa}
+                  editable={false}
+                  onChangeText={(value) => dataInto('empresa', value)}
+                />
               </View>
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Descripcion</Text>
-                <TextInput style={styles.input} />
-              </View> */}
+                <TextInput style={styles.input} 
+                  value={data.desc_empresa}
+                  onChangeText={(value) => dataInto('desc_empresa', value)}
+                  editable={false}
+                />
+              </View>
 
             </View>
 
@@ -170,7 +188,7 @@ const EditClient = ({ nombres, apellidos, telefono, email, empresa, id }) => {
                 </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.eliminar}>
+              <TouchableOpacity style={styles.eliminar} onPress={handleSubmit}>
                 <Text
                   style={{
                     color: "#F4EEE0",
@@ -205,7 +223,7 @@ const styles = StyleSheet.create({
     padding: 15,
     width: '90%',
     borderRadius: 10,
-    height: 460
+    height: 660
   },
   cerrar: {
     borderColor: 'blue',
