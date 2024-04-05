@@ -11,11 +11,18 @@ const CardPerson = ({icon, nombre, apellido, telefono, correo, empresa, id}) => 
         <Text style={styles.llaves}>Nombre: <Text style={styles.llavesInfo}>{nombre}</Text></Text>
         <Text style={styles.llaves}>Apellido: <Text style={styles.llavesInfo}>{apellido}</Text></Text>
         <Text style={styles.llaves}>Telefono: <Text style={styles.llavesInfo}>{telefono}</Text></Text>
-        <Text style={styles.llaves}>Direccion: <Text style={styles.llavesInfo}>{correo}</Text></Text>
+        <Text style={styles.llaves}>Email: <Text style={styles.llavesInfo}>{correo}</Text></Text>
         <Text style={styles.llaves}>Empresa: <Text style={styles.llavesInfo}>{empresa}</Text></Text>
       </View>
       <View style={styles.opciones}>
-        <EditClient />
+        <EditClient 
+          id={id}
+          nombres={nombre} 
+          apellidos={apellido} 
+          telefono={telefono}
+          email={correo} 
+          empresa={empresa} 
+        />
         <DeleteClient 
           nombre={nombre}
           id={id}
@@ -29,13 +36,18 @@ export default CardPerson
 
 const styles = StyleSheet.create({
     card: {
-        borderColor: 'black',
+        borderColor: '#0174BE',
         borderWidth: 2,
-        width: '80%',
-        height: 130,
+        width: '90%',
+        // height: 130,
         borderRadius: 20,
         marginBottom: 10,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        paddingVertical: '5%',
+        paddingHorizontal: '3%',
+        position: 'relative'
     },
     icon: {
         position: 'absolute',
@@ -51,6 +63,7 @@ const styles = StyleSheet.create({
     },
     llaves: {
       fontWeight: 'bold',
+      fontSize: 16
     },
     llavesInfo: {
       fontWeight: '400',
@@ -64,6 +77,6 @@ const styles = StyleSheet.create({
       gap: 25, 
       position: 'absolute',
       right: 15,
-      top: 15
+      // top: '5%'
     }
 })

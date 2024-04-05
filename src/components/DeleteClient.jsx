@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Modal, TouchableOpacity, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View, Modal, TouchableOpacity,
+  //  ToastAndroid 
+} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
 
@@ -48,6 +50,17 @@ const DeleteClient = ({nombre, id}) => {
             onPress={() => setModalVisible(false)}
           >
             <View style={styles.modalView}>
+
+            <Text
+                style={{
+                  marginTop: 15,
+                  marginBottom: 10,
+                  fontSize: 16
+                }}
+              >
+                ¿ Seguro que desea eliminar a {nombre} ?
+            </Text>
+
               <View style={styles.modaltop}>
                 <TouchableOpacity
                   onPress={() => setModalVisible(false)}
@@ -59,7 +72,7 @@ const DeleteClient = ({nombre, id}) => {
                       fontWeight: "bold",
                     }}
                   >
-                    Cerrar
+                    Cancelar
                   </Text>
                 </TouchableOpacity>
 
@@ -77,15 +90,7 @@ const DeleteClient = ({nombre, id}) => {
                     Eliminar
                   </Text>
                 </TouchableOpacity>
-              </View>
-              <Text
-                style={{
-                  marginTop: 15,
-                  marginLeft: 15,
-                }}
-              >
-                ¿Seguro que desea eliminar a '{nombre}'?
-              </Text>
+              </View>             
             </View>
           </View>
         </Modal>
@@ -106,23 +111,24 @@ const styles = StyleSheet.create({
         padding: 15,
         width: '90%',
         borderRadius: 10,
+        alignItems: 'center'
     },
     cerrar: {
       borderColor: 'blue',
-      backgroundColor: 'blue',
+      backgroundColor: '#2F58CD',
       fontSize: 10,
       borderRadius: 5,
       padding: 2,
-      paddingLeft: 6,
-      paddingRight: 6,
+      paddingHorizontal: 9,
+      paddingVertical: 5
     },
     eliminar: {
       borderColor: 'red',
-      backgroundColor: 'red',
+      backgroundColor: '#D21312',
       borderRadius: 5,
       padding: 2,
-      paddingLeft: 6,
-      paddingRight: 6,
+      paddingHorizontal: 9,
+      paddingVertical: 5
     },
     modaltop: {
       // position: 'absolute',

@@ -50,6 +50,7 @@ function Contabilidad() {
                                 <Text style={styles.tittle}>Productos</Text>
                             </TouchableOpacity>
                         </View>
+                        <Text style={styles.logo}>DDNE Inventory</Text>
                     </View>
                 )
             }
@@ -86,5 +87,12 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
         color: '#2ca3d3'
+    },
+    logo: {
+        position: 'absolute',
+        bottom: 13,
+        fontSize: 18, 
+        fontWeight: '500',
+        color: '#246391'
     }
 })

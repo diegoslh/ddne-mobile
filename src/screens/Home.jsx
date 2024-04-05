@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   userImg: {
     aspectRatio: 1 / 1,
-    // width: '60%',
+    // width: '85%',
     height: '85%',
     alignSelf: 'center',
   },

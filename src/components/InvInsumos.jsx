@@ -25,62 +25,6 @@ const InvInsumos = ({Opcion}) => {
   const [registros, setRegistros] = useState([]);
   useHardwareBackHandler({ Opcion })
 
-  //   {
-  //     "id_inventario_insumos": 110,
-  //     "fk_n_transaccion": 11,
-  //     "fk_tipo_insumo": "Rollo Carton",
-  //     "consecutivo_insumo": "N/A",
-  //     "peso_insumo": "40.00",
-  //     "unidades": 10,
-  //     "fk_estado": "Recibido",
-  //     "fecha_planificada": "2023-06-25T05:00:00.000Z",
-  //     "fecha_recepcion": "2023-07-01T05:00:00.000Z",
-  //     "fecha_registro": "2023-06-01T05:00:00.000Z",
-  //     "fk_proveedor": "45965784",
-  //     "fk_ti_proveedor": "CC",
-  //     "fk_usuario": 2,
-  //     "estado_registro": 1,
-  //     "alias": "J.operaciones",
-  //     "nombre_empresa": "Propandina S.A.S"
-  //   },
-  //   {
-  //     "id_inventario_insumos": 111,
-  //     "fk_n_transaccion": 11,
-  //     "fk_tipo_insumo": "Parafina",
-  //     "consecutivo_insumo": "N/A",
-  //     "peso_insumo": "40.00",
-  //     "unidades": 10,
-  //     "fk_estado": "Recibido",
-  //     "fecha_planificada": "2023-06-25T05:00:00.000Z",
-  //     "fecha_recepcion": "2023-07-01T05:00:00.000Z",
-  //     "fecha_registro": "2023-06-01T05:00:00.000Z",
-  //     "fk_proveedor": "45965784",
-  //     "fk_ti_proveedor": "CC",
-  //     "fk_usuario": 2,
-  //     "estado_registro": 1,
-  //     "alias": "J.operaciones",
-  //     "nombre_empresa": "Propandina S.A.S"
-  //   },
-  //   {
-  //     "id_inventario_insumos": 112,
-  //     "fk_n_transaccion": 11,
-  //     "fk_tipo_insumo": "Rollo Carton",
-  //     "consecutivo_insumo": "N/A",
-  //     "peso_insumo": "40.00",
-  //     "unidades": 10,
-  //     "fk_estado": "Recibido",
-  //     "fecha_planificada": "2023-06-25T05:00:00.000Z",
-  //     "fecha_recepcion": "2023-07-01T05:00:00.000Z",
-  //     "fecha_registro": "2023-06-01T05:00:00.000Z",
-  //     "fk_proveedor": "45965784",
-  //     "fk_ti_proveedor": "CC",
-  //     "fk_usuario": 2,
-  //     "estado_registro": 1,
-  //     "alias": "J.operaciones",
-  //     "nombre_empresa": "Propandina S.A.S"
-  //   },
-  // ]);
-
   //🔸 Solicitud de Datos a API
   useEffect(() => {
     // getData(ENDPOINT, setRegistros);

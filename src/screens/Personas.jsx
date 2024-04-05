@@ -6,8 +6,6 @@ import Clientes from './Clientes';
 
 function Personas() {
 
-    useHardwareBackHandler({ Opcion })
-
     const [opcion, setOpcion] = useState(null);
 
     useFocusEffect(
@@ -20,15 +18,15 @@ function Personas() {
         <View style={styles.contenedor}>
             {
                 opcion === 'Proveedores' ? (
-                    <Pendiente Opcion={setOpcion}/>
+                    <Pendiente Opcion={setOpcion} />
                 ) : opcion === 'Clientes' ? (
-                    <Clientes Opcion={setOpcion}/>
+                    <Clientes Opcion={setOpcion} />
                 ) : opcion === 'Usuarios' ? (
-                    <Pendiente Opcion={setOpcion}/>
+                    <Pendiente Opcion={setOpcion} />
                 ) : (
                     <View style={styles.opciones}>
                         <View style={styles.tarjeta}>
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={styles.boton}
                                 onPress={() => setOpcion('Proveedores')}
                             >
@@ -36,7 +34,7 @@ function Personas() {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.tarjeta}>
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={styles.boton}
                                 onPress={() => setOpcion('Clientes')}
                             >
@@ -44,18 +42,19 @@ function Personas() {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.tarjeta}>
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={styles.boton}
                                 onPress={() => setOpcion('Usuarios')}
                             >
                                 <Text style={styles.tittle}>Usuarios</Text>
                             </TouchableOpacity>
                         </View>
+                        <Text style={styles.logo}>DDNE Inventory</Text>
                     </View>
                 )
             }
         </View>
-        
+
     )
 }
 
@@ -87,5 +86,12 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
         color: '#2ca3d3'
+    },
+    logo: {
+        position: 'absolute',
+        bottom: 13,
+        fontSize: 18, 
+        fontWeight: '500',
+        color: '#246391'
     }
 })
