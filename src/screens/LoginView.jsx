@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
-  // ToastAndroid 
+  ToastAndroid 
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -17,7 +17,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 //API ⚙️
 // const ENDPOINT = 'http://10.0.2.2:5000/login';
-const ENDPOINT = 'http://192.168.0.29:5000/login';
+const ENDPOINT = 'http://192.168.137.207:5000/login';
 
 const LoginView = () => {
 
@@ -53,15 +53,15 @@ const LoginView = () => {
       }
 
       console.log(` ${response.data.message}`);
-      // ToastAndroid.show(` ${response.data.message}`, ToastAndroid.SHORT)
+      ToastAndroid.show(` ${response.data.message}`, ToastAndroid.SHORT)
 
     } catch (error) {
 
       // console.log(error.response.status)
       console.error('Error al enviar datos:', error);
 
-      // error.response.status === 401 ? ToastAndroid.show(` ${error.response.data.message}`, ToastAndroid.SHORT)
-      // : ToastAndroid.show('❌ Error al enviar datos:', ToastAndroid.SHORT);
+      error.response.status === 401 ? ToastAndroid.show(` ${error.response.data.message}`, ToastAndroid.SHORT)
+      : ToastAndroid.show('❌ Error al enviar datos:', ToastAndroid.SHORT);
 
     }
   };
@@ -109,7 +109,7 @@ const LoginView = () => {
           />
 
           <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-            {/* <TouchableOpacity style={styles.button} onPress={() => redirect.navigate("HomeTab")}> */}
+          {/* <TouchableOpacity style={styles.button} onPress={() => redirect.navigate("HomeTab")}> */}
             <Text style={styles.buttonText}>INGRESAR</Text>
           </TouchableOpacity>
         </View>

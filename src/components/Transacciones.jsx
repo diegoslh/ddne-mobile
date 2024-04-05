@@ -15,8 +15,8 @@ function Transacciones({ Opcion }) {
 
     const getDatos = async () => {
         try{
-            const transacciones_V = await axios.get('http://192.168.0.10:5000/transacciones-ventas');
-            const transacciones_C = await axios.get('http://192.168.0.10:5000/transacciones-compras');
+            const transacciones_V = await axios.get('http://192.168.137.207:5000/transacciones-ventas');
+            const transacciones_C = await axios.get('http://192.168.137.207:5000/transacciones-compras');
             
             const transacciones = [...transacciones_V.data.data, ...transacciones_C.data.data];
 

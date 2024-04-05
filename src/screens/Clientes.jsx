@@ -11,7 +11,7 @@ const Clientes = ({ Opcion }) => {
 
   const [clientes, setClientes] = useState([]);
   useEffect(() => {
-    axios.get('http://10.0.2.2:5000/clientes')
+    axios.get('http://192.168.137.207:5000/clientes')
       .then(response => {
         setClientes(response.data.data);
       })

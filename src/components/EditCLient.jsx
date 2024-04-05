@@ -15,7 +15,7 @@ const transparent = 'rgba(0,0,0,0.5)';
 
 const EditClient = ({ nombres, apellidos, telefono, email, empresa, id }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  
+
   const datos_iniciales = {
     id: id,
     nombres: nombres,
@@ -35,6 +35,32 @@ const EditClient = ({ nombres, apellidos, telefono, email, empresa, id }) => {
       ...data,
       [key]: value
     });
+  };
+
+  const handleSubmit = async () => {
+
+    console.log('Formulario >> ', datos_iniciales);
+    try {
+      const response = await axios.post(ENDPOINT, datos_iniciales);
+      // console.log(response)
+      if (response.data.success) {
+
+        // redirect.navigate("HomeTab");
+        return
+      }
+
+      console.log(` ${response.data.message}`);
+      // ToastAndroid.show(` ${response.data.message}`, ToastAndroid.SHORT)
+
+    } catch (error) {
+
+      // console.log(error.response.status)
+      console.error('Error al enviar datos:', error);
+
+      // error.response.status === 401 ? ToastAndroid.show(` ${error.response.data.message}`, ToastAndroid.SHORT)
+      // : ToastAndroid.show('❌ Error al enviar datos:', ToastAndroid.SHORT);
+
+    }
   };
 
   return (
