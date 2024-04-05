@@ -177,7 +177,7 @@ const MyStack = () => {
             // headerStyle: { backgroundColor: '#1A4055' },
             headerTitleAlign: 'center',
             // headerTransparent: true,
-            headerShown: true,
+            headerShown: false,
           }}
         />
 

@@ -16,7 +16,7 @@ import CardRegistroExpandible from './CardRegistroExpandible';
 import Loading from './Loading';
 
 // API ⚙️
-const ENDPOINT = 'http://192.168.0.29:5000/inv/insumos';
+const ENDPOINT = 'http://192.168.137.207:5000/inv/insumos';
 
 const InvInsumos = ({Opcion}) => {
 
