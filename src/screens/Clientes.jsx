@@ -28,6 +28,7 @@ const Clientes = () => {
           telefono={cliente.telefono}
           correo={cliente.correo} 
           empresa={cliente.nombre_empresa}
+          id={cliente.persona_id}
         />
       ))}
     </View>
