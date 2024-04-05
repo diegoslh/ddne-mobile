@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const transparent = 'rgba(0,0,0,0.5)';
 
-const DeleteClient = ({nombre, id}) => {
+const DeleteClient = ({nombre, id, reload}) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const url = 'http://192.168.137.207:5000/deleteClient';
@@ -22,6 +22,7 @@ const DeleteClient = ({nombre, id}) => {
 
         if (data.data.success){
           ToastAndroid.show('Se ha eliminado el cliente correctamente', ToastAndroid.LONG);
+          reload()
           setModalVisible(false);
         } else {
           ToastAndroid.show('NO se ha podido eliminar al cliente', ToastAndroid.LONG);

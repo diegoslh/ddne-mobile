@@ -4,9 +4,12 @@ import axios from 'axios'
 
 import { Entypo } from '@expo/vector-icons';
 import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
+import { IPv4 } from '../../config';
 
 function Transacciones({ Opcion }) {
     useHardwareBackHandler({ Opcion })
+
+    console.log(IPv4)
 
     // const [transacciones_V, setTransacciones_V] = useState([])
     // const [transacciones_C, setTransacciones_C] = useState([])

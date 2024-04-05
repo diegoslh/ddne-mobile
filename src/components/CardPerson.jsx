@@ -3,7 +3,7 @@ import React from 'react'
 import DeleteClient from './DeleteClient'
 import EditClient from './EditCLient'
 
-const CardPerson = ({icon, nombre, apellido, telefono, correo, empresa, id}) => {
+const CardPerson = ({icon, nombre, apellido, telefono, correo, empresa, id, reload}) => {
   return (
     <View style={styles.card}>
       <Image source={icon} style={styles.icon}/>
@@ -21,11 +21,13 @@ const CardPerson = ({icon, nombre, apellido, telefono, correo, empresa, id}) => 
           apellidos={apellido} 
           telefono={telefono}
           email={correo} 
-          empresa={empresa} 
+          empresa={empresa}
+          // reload={reload}
         />
         <DeleteClient 
           nombre={nombre}
           id={id}
+          reload={reload}
         />
       </View>
     </View>

@@ -10,7 +10,8 @@ const Clientes = ({ Opcion }) => {
   useHardwareBackHandler({ Opcion })
 
   const [clientes, setClientes] = useState([]);
-  useEffect(() => {
+
+  const getClientes = () => {
     axios.get('http://192.168.137.207:5000/clientes')
       .then(response => {
         setClientes(response.data.data);
@@ -18,7 +19,14 @@ const Clientes = ({ Opcion }) => {
       .catch(error => {
         console.error('Error al traer la informacion:', error);
       });
+  }
+  useEffect(() => {
+    getClientes()
   }, []);
+
+  const reload = () => {
+    getClientes()
+  }
 
   return (
     <View style={styles.contenedor}>
@@ -36,6 +44,7 @@ const Clientes = ({ Opcion }) => {
           correo={cliente.correo}
           empresa={cliente.nombre_empresa}
           id={cliente.persona_id}
+          reload={reload}
         />
       ))}
     </View>
