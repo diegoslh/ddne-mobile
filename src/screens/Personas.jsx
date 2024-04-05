@@ -6,6 +6,8 @@ import Clientes from './Clientes';
 
 function Personas() {
 
+    useHardwareBackHandler({ Opcion })
+
     const [opcion, setOpcion] = useState(null);
 
     useFocusEffect(
@@ -20,7 +22,7 @@ function Personas() {
                 opcion === 'Proveedores' ? (
                     <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Clientes' ? (
-                    <Clientes/>
+                    <Clientes Opcion={setOpcion}/>
                 ) : opcion === 'Usuarios' ? (
                     <Pendiente Opcion={setOpcion}/>
                 ) : (

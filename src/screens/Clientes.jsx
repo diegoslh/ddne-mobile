@@ -4,7 +4,9 @@ import CardPerson from '../components/CardPerson'
 import Clientimage from '../assets/img/client.png'
 import axios from 'axios'
 
-const Clientes = () => {
+const Clientes = ({Opcion}) => {
+
+  useHardwareBackHandler({ Opcion })
   
   const [clientes, setClientes] = useState([]);
   useEffect(() => {
