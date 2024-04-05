@@ -96,12 +96,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 20,
         borderColor: '#2ca3d3',
+        overflow: 'hidden',
         borderWidth: 2,
     },
     tittle: {
         fontSize: 25,
         fontWeight: 'bold',
-        color: '#2ca3d3'
+        // color: '#2ca3d3'
     },
     logo: {
         position: 'absolute',

@@ -31,7 +31,7 @@ const InvProduccion = ({Opcion}) => {
     const obtenerDatos = async () => {
       try {
         const response = await axios.get(ENDPOINT);
-        // console.log(response.data.success, ' +++');
+        console.log(response.data.success, ' +++');
 
         response.data.success
           ? setRegistros(response.data.data)
