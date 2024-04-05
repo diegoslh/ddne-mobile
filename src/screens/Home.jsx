@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'react-native-web';
-
+import { StyleSheet, Text, View, Image, TouchableOpacity, Linking } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { StyleSheet, Text, View, Image } from 'react-native'
-import userImg from "../../assets/user.png";
+
+//🔸 Imagenes 
+import userImg from "../assets/user.png";
+import apiImg from "../assets/api.png";
+import webImg from "../assets/web.png";
 
 
 const Home = () => {
@@ -13,17 +16,6 @@ const Home = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-
-    // const getSession = async () => {
-    //   try {
-    //     const session = await AsyncStorage.getItem('user_session');
-    //     session != null && setUser(JSON.parse(session));
-    //   } catch (e) {
-    //     console.log( `Error al Obtener Datos de Session ${e}`);
-    //   }
-    // }
-
-    // getSession();
 
     (async () => {
       try {
@@ -36,16 +28,24 @@ const Home = () => {
 
   }, [])
 
+  const handleLink = (redirect) => {
+    const url = redirect === 'api'
+      ? 'http://192.168.0.29:5000'
+      : 'http://192.168.0.29:3000'
+    ;
+    Linking.openURL(url);
+  };
 
   return (
     <View style={styles.container}>
-      <StatusBar/>
+      <StatusBar />
 
       <View style={styles.userContainer}>
         <Image source={userImg} style={styles.userImg} />
       </View>
 
       <View style={styles.infoContainer}>
+
         <Text style={styles.infoTitle}> Información Usuario </Text>
 
         <View style={styles.infoView}>
@@ -69,6 +69,25 @@ const Home = () => {
         </View>
       </View>
 
+      <View style={styles.direccionamiento}>
+        <Text style={styles.direccionamiento_text}>Páginas Relacionadas:</Text>
+
+        <TouchableOpacity onPress={() => handleLink('api')} >
+          <Image
+            source={apiImg}
+            style={{ width: 38, height: 38, alignSelf: 'center' }}
+          />
+          <Text style={{ alignSelf: 'center', marginTop: 2, fontWeight: '500', fontSize: 14 }}> API </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => handleLink('web')} >
+          <Image
+            source={webImg}
+            style={{ width: 40, height: 40, alignSelf: 'center' }}
+          />
+          <Text style={{ alignSelf: 'center', marginTop: 2, fontWeight: '500', fontSize: 14 }}>App Web </Text>
+        </TouchableOpacity>
+      </View>
 
     </View>
   )
@@ -82,7 +101,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // justifyContent: 'flex-end'
     paddingTop: '8%',
-     backgroundColor: 'white'
+    backgroundColor: '#fefefe'
   },
   userContainer: {
     width: '100%',
@@ -91,9 +110,9 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
   },
   userImg: {
-    // aspectRatio: 1 / 1
-    width: '65%',
-    height: '90%',
+    aspectRatio: 1 / 1,
+    // width: '60%',
+    height: '85%',
     alignSelf: 'center',
   },
   infoContainer: {
@@ -101,15 +120,15 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(34, 136, 226, 0.66)',
     width: '101%',
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: 30,
     marginVertical: 20,
     backgroundColor: 'rgba(101, 189, 215, 0.11)',
-    // backgroundColor: 'rgb(13, 65, 111)'
+
   },
   infoTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: '3%',
+    marginBottom: '4%',
     // color: 'white'
   },
   infoView: {
@@ -118,7 +137,7 @@ const styles = StyleSheet.create({
     width: '86%',
     // borderWidth: 1    
   },
-  infoLabel:{
+  infoLabel: {
     textAlign: 'justify',
     fontSize: 20,
     marginVertical: '1.2%',
@@ -138,6 +157,25 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     borderColor: 'red',
     // color: 'rgb(215, 213, 213)'
+  },
+  direccionamiento: {
+    // borderWidth: 1,
+    backgroundColor: '#98c8f21c',
+    flexDirection: 'row',
+    gap: 20,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '101%',
+    height: '19%',
+    paddingHorizontal: '8%'
+  },
+  direccionamiento_text: {
+    // borderWidth: 1,
+    width: '40%',
+    fontSize: 20,
+    textAlign: 'auto',
+    lineHeight: 26,
+    fontWeight: '500'
   }
 })
 

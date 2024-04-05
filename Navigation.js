@@ -72,7 +72,7 @@ const Navigation = () => {
         component={Home}
         options={{
           title: '',
-          tabBarLabel: 'Inicio',
+          headerTintColor: '#00224D',
           headerTransparent: false,
           headerStyle: { backgroundColor: '#98c8f21c' },
           headerLeft: () => (
@@ -81,6 +81,8 @@ const Navigation = () => {
           headerRight: () => {
             return <Logout />
           },
+
+          tabBarLabel: 'Inicio',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="home" size={size} color={color} />
           ),
@@ -89,7 +91,7 @@ const Navigation = () => {
       <Tab.Screen name="Inventarios" component={Inventarios}
         options={{
           title: 'Inventarios',
-          tabBarLabel: 'Inventarios',
+          headerTintColor: '#00224D',
           headerTitleAlign: 'center',
           headerTransparent: false,
           headerStyle: { backgroundColor: '#98c8f21c' },
@@ -99,6 +101,8 @@ const Navigation = () => {
           headerRight: () => {
             return <Logout />
           },
+
+          tabBarLabel: 'Inventarios',
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="inventory" size={22} color={color} />
           )
@@ -110,7 +114,7 @@ const Navigation = () => {
         component={Contabilidad}
         options={{
           title: 'Contabilidad',
-          tabBarLabel: 'Contabilidad',
+          headerTintColor: '#00224D',
           headerTitleAlign: 'center',
           headerStyle: { backgroundColor: '#98c8f21c' },
           headerLeft: () => (
@@ -119,6 +123,8 @@ const Navigation = () => {
           headerRight: () => {
             return <Logout />
           },
+
+          tabBarLabel: 'Contabilidad',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="bookshelf" size={size} color={color} />
           )
@@ -128,7 +134,7 @@ const Navigation = () => {
       <Tab.Screen name="Personas" component={Personas}
         options={{
           title: 'Personas',
-          tabBarLabel: 'Personas',
+          headerTintColor: '#00224D',
           headerTitleAlign: 'center',
           headerStyle: { backgroundColor: '#98c8f21c' },
           headerLeft: () => (
@@ -137,6 +143,8 @@ const Navigation = () => {
           headerRight: () => {
             return <Logout />
           },
+          
+          tabBarLabel: 'Personas',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="people-outline" size={size} color={color} />
           )

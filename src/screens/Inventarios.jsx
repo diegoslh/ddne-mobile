@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image, ViewComponent } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
 import Pendiente from './Pendiente';
 import InvInsumos from '../components/InvInsumos';
 import InvProduccion from '../components/InvProduccion';
+import { LinearGradient } from 'expo-linear-gradient';
+import insumos from '../assets/insumos.png'
+import produccion from '../assets/produccion.png'
 
 function Inventarios() {
 
@@ -19,26 +22,46 @@ function Inventarios() {
         <View style={styles.contenedor}>
             {
                 opcion === 'Inventario Insumos' ? (
-                    <InvInsumos Opcion={setOpcion}/>
+                    <InvInsumos Opcion={setOpcion} />
                 ) : opcion === 'Inventario Produccion' ? (
-                    <InvProduccion Opcion={setOpcion}/>
+                    <InvProduccion Opcion={setOpcion} />
                 ) : opcion === 'Segimiento de Lote' ? (
-                    <Pendiente Opcion={setOpcion}/>
+                    <Pendiente Opcion={setOpcion} />
                 ) : (
                     <View style={styles.opciones}>
                         <View style={styles.tarjeta}>
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={styles.boton}
                                 onPress={() => setOpcion('Inventario Insumos')}
                             >
+                                <LinearGradient
+                                    colors={['rgb(38, 143, 206)', 'rgba(126, 197, 241, 0.7)', 'rgba(26, 164, 247, 0.08)']}
+                                    start={{ x: 0, y: 0 }}
+                                    // end={{ x: 1, y: 0 }}
+                                    end={{ x: 1, y: 1 }}
+                                    style={StyleSheet.absoluteFill}
+                                />
+                                <View style={styles.view_image}>
+                                    <Image source={insumos} style={{ width: 95, height: 95 }} />
+                                </View>
                                 <Text style={styles.tittle}>Inventario Insumos</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.tarjeta}>
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={styles.boton}
                                 onPress={() => setOpcion('Inventario Produccion')}
                             >
+                                <LinearGradient
+                                    colors={['rgb(38, 143, 206)', 'rgba(126, 197, 241, 0.7)', 'rgba(26, 164, 247, 0.08)']}
+                                    start={{ x: 0, y: 0 }}
+                                    // end={{ x: 1, y: 0 }}
+                                    end={{ x: 1, y: 1 }}
+                                    style={StyleSheet.absoluteFill}
+                                />
+                                <View style={styles.view_image}>
+                                    <Image source={produccion} style={{ width: 90, height: 90 }} />
+                                </View>
                                 <Text style={styles.tittle}>Inventario Producción</Text>
                             </TouchableOpacity>
                         </View>
@@ -50,11 +73,12 @@ function Inventarios() {
                                 <Text style={styles.tittle}>Segimiento de Lote</Text>
                             </TouchableOpacity>
                         </View> */}
+                        <Text style={styles.logo}>DDNE Inventory</Text>
                     </View>
                 )
             }
         </View>
-        
+
     )
 }
 
@@ -69,22 +93,39 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 20
+        gap: 30
     },
     tarjeta: {
         width: '85%'
     },
     boton: {
-        height: 160,
+        height: 180,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,
-        borderColor: '#2ca3d3',
-        borderWidth: 2,
+        overflow: 'hidden',
+        borderColor: 'rgba(126, 197, 241, 0.7)',
+        borderWidth: 1,
+        // gap: 10,
+        flexDirection: 'row'
+    },
+    view_image: {
+        width: '40%',
+        // borderWidth: 1,
+        alignItems: 'center'
     },
     tittle: {
+        width: '50%',
         fontSize: 25,
         fontWeight: 'bold',
-        color: '#2ca3d3'
+        color: 'rgb(0, 10, 67)',
+        // borderWidth: 1
+    },
+    logo: {
+        position: 'absolute',
+        bottom: 13,
+        fontSize: 18, 
+        fontWeight: '500',
+        color: '#246391'
     }
 })

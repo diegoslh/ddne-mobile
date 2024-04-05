@@ -79,13 +79,12 @@ const LoginView = () => {
       <View style={styles.loginContainer}>
 
         <LinearGradient
-          // colors={['#228fa0', '#023693', '#14264c70']}
-          // colors={['#050C1B', '#023693', '#228fa0']}
-          // colors={['#050C1B', '#1A4055', '#228fa0']}
-          colors={['#050C1B', '#1A4055', 'rgb(8, 140, 185)']}
+          // colors={['rgb(5, 71, 120)', 'rgba(31, 110, 158, 0.97)', 'rgb(8, 95, 124)']}
+          colors={['rgb(38, 112, 206)', 'rgba(0, 106, 139, 0.59)', 'rgb(26, 164, 247)']}
+          // linear-gradient(135.216deg, rgb(38, 112, 206), rgba(0, 106, 139, 0.59), rgb(26, 164, 247))
           start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          // end={{ x: 1, y: 1 }}
+          // end={{ x: 1, y: 0 }}
+          end={{ x: 1, y: 1 }}
           style={StyleSheet.absoluteFill}
         />
 
@@ -314,7 +313,8 @@ const styles = StyleSheet.create({
   welcomeText: {
     fontSize: 29,
     fontWeight: 'bold',
-    color: '#fff',
+    // color: '#1D267D',
+    color: 'rgba(255, 255, 255, 0.91)'
   },
   formContainer: {
     paddingHorizontal: 20,
@@ -323,19 +323,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 5,
     marginTop: 5,
-    color: 'rgb(202, 200, 200)'
+    color: 'rgb(3, 36, 92)'
   },
   input: {
     fontSize: 15,
     marginBottom: 15,
     borderBottomWidth: 1,
-    borderColor: 'rgb(34, 199, 255)',
+    borderColor: 'rgb(30, 0, 137)',
     paddingVertical: 10,
     paddingHorizontal: 8,
     color: '#fff'
   },
   button: {
-    backgroundColor: 'rgba(82, 231, 255, 0.85)',
+    backgroundColor: 'rgb(6, 36, 87)',
     borderRadius: 30,
     paddingVertical: 12,
     alignItems: 'center',
@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#000',
+    color: '#fefefe',
     fontWeight: 'bold'
   },
 });

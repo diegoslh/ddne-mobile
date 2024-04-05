@@ -16,7 +16,7 @@ import CardRegistroExpandible from './CardRegistroExpandible';
 import Loading from './Loading';
 
 // API ⚙️
-const ENDPOINT = 'http://10.0.2.2:5000/inv/insumos';
+const ENDPOINT = 'http://192.168.0.29:5000/inv/insumos';
 
 const InvInsumos = ({Opcion}) => {
 
@@ -97,6 +97,7 @@ const InvInsumos = ({Opcion}) => {
         setIsLoading(false);
 
       } catch (error) {
+        setIsLoading(false);
         setRegistros(false);
         console.log(error);
         ToastAndroid.show('⛔ Error en Solicitud de Datos a API', ToastAndroid.LONG);
