@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -34,18 +34,21 @@ const Navigation = () => {
         options={{
           title: 'Inicio',
           tabBarLabel: 'Inicio',
+          headerTitleAlign: 'center',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="home" size={size} color={color} />
           ),
           headerTransparent: false,
           headerTintColor: '#fefefe',
           headerStyle: { backgroundColor: '#048cbad8' } 
-        }} />
+      }} />
 
       <Tab.Screen name="Inventarios" component={Inventarios}
         options={{
-          title: 'Inventario',
-          tabBarLabel: 'Inventario',
+          title: 'Inventarios',
+          tabBarLabel: 'Inventarios',
+          headerTitleAlign: 'center',
+          headerTransparent: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="inventory" size={size} color={color} />
           )
@@ -58,6 +61,7 @@ const Navigation = () => {
         options={{
           title: 'Contabilidad',
           tabBarLabel: 'Contabilidad',
+          headerTitleAlign: 'center',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="bookshelf" size={size} color={color} />
           )
@@ -68,6 +72,7 @@ const Navigation = () => {
         options={{
           title: 'Personas',
           tabBarLabel: 'Personas',
+          headerTitleAlign: 'center',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="people-outline" size={size} color={color} />
           )
