@@ -17,7 +17,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 //API ⚙️
 // const ENDPOINT = 'http://10.0.2.2:5000/login';
-const ENDPOINT = 'http://192.168.0.29:5000/login';
+const ENDPOINT = 'http:// 192.168.113.126:5000/login';
 
 const LoginView = () => {
 
