@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
+import DeleteClient from './DeleteClient'
+import EditClient from './EditCLient'
 
-const CardPerson = ({icon, nombre, apellido, telefono, correo, empresa}) => {
+const CardPerson = ({icon, nombre, apellido, telefono, correo, empresa, id}) => {
   return (
     <View style={styles.card}>
       <Image source={icon} style={styles.icon}/>
@@ -11,6 +13,13 @@ const CardPerson = ({icon, nombre, apellido, telefono, correo, empresa}) => {
         <Text style={styles.llaves}>Telefono: <Text style={styles.llavesInfo}>{telefono}</Text></Text>
         <Text style={styles.llaves}>Direccion: <Text style={styles.llavesInfo}>{correo}</Text></Text>
         <Text style={styles.llaves}>Empresa: <Text style={styles.llavesInfo}>{empresa}</Text></Text>
+      </View>
+      <View style={styles.opciones}>
+        <EditClient />
+        <DeleteClient 
+          nombre={nombre}
+          id={id}
+        />
       </View>
     </View>
   )
@@ -26,6 +35,7 @@ const styles = StyleSheet.create({
         height: 130,
         borderRadius: 20,
         marginBottom: 10,
+        flexDirection: 'row'
     },
     icon: {
         position: 'absolute',
@@ -35,7 +45,9 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     info: {
-      marginLeft: 10,
+      marginLeft: 12,
+      marginRight: 25
+      
     },
     llaves: {
       fontWeight: 'bold',
@@ -43,6 +55,15 @@ const styles = StyleSheet.create({
     llavesInfo: {
       fontWeight: '400',
       lineHeight: 24
-      // fontSize: 12
     },
+    opciones: {
+      // borderBlockColor: 'black',
+      // borderWidth: 4,
+      justifyContent: 'center',
+      flexDirection: 'column',
+      gap: 25, 
+      position: 'absolute',
+      right: 15,
+      top: 15
+    }
 })

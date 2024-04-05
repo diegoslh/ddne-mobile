@@ -1,0 +1,139 @@
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Modal, TouchableOpacity, ToastAndroid } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import axios from 'axios';
+
+const transparent = 'rgba(0,0,0,0.5)';
+
+const DeleteClient = ({nombre, id}) => {
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const url = 'http://192.168.2.102:5000/deleteClient';
+
+    const handleSubmit = async () => {
+      console.log(id)
+
+      try {
+        console.log('Entro al try')
+        const data = await axios.put(`${url}/${id}`);
+
+
+        if (data.data.success){
+          ToastAndroid.show('Se ha eliminado el cliente correctamente', ToastAndroid.LONG);
+          setModalVisible(false);
+        } else {
+          ToastAndroid.show('NO se ha podido eliminar al cliente', ToastAndroid.LONG);
+          setModalVisible(false);
+        }
+      } catch (error) {
+        ToastAndroid.show('Error al enviar datos', ToastAndroid.LONG)
+      }
+    };
+
+
+    return (
+      <>
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <AntDesign name="delete" size={30} color="red" />
+        </TouchableOpacity>
+
+        <Modal
+          visible={modalVisible}
+          animationType="slide"
+          transparent={true}
+          onRequestClose={() => setModalVisible(false)}
+        >
+          <View
+            style={styles.centeredView}
+            onPress={() => setModalVisible(false)}
+          >
+            <View style={styles.modalView}>
+              <View style={styles.modaltop}>
+                <TouchableOpacity
+                  onPress={() => setModalVisible(false)}
+                  style={styles.cerrar}
+                >
+                  <Text
+                    style={{
+                      color: "white",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Cerrar
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.eliminar}>
+                  <Text
+                    style={{
+                      color: "white",
+                      fontWeight: "bold",
+                    }}
+                    onPress={() => {
+                      handleSubmit();
+                      setModalVisible(false);
+                    }}
+                  >
+                    Eliminar
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <Text
+                style={{
+                  marginTop: 15,
+                  marginLeft: 15,
+                }}
+              >
+                ¿Seguro que desea eliminar a '{nombre}'?
+              </Text>
+            </View>
+          </View>
+        </Modal>
+      </>
+    );
+};
+
+const styles = StyleSheet.create({
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        backgroundColor: transparent,
+    },
+    modalView: {
+        backgroundColor: 'white',
+        padding: 15,
+        width: '90%',
+        borderRadius: 10,
+    },
+    cerrar: {
+      borderColor: 'blue',
+      backgroundColor: 'blue',
+      fontSize: 10,
+      borderRadius: 5,
+      padding: 2,
+      paddingLeft: 6,
+      paddingRight: 6,
+    },
+    eliminar: {
+      borderColor: 'red',
+      backgroundColor: 'red',
+      borderRadius: 5,
+      padding: 2,
+      paddingLeft: 6,
+      paddingRight: 6,
+    },
+    modaltop: {
+      // position: 'absolute',
+      top: 1,
+      alignItems: 'center',
+      flexDirection: 'row',
+      gap: 10,
+      paddingLeft: 15,
+      paddingTop: 10,
+      marginBottom: 10
+    }
+});
+
+export default DeleteClient;
