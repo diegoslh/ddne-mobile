@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import { Entypo } from '@expo/vector-icons';
 import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
+import { IPv4 } from '../../config';
 
 function Transacciones({ Opcion }) {
     useHardwareBackHandler({ Opcion })
@@ -15,8 +16,8 @@ function Transacciones({ Opcion }) {
 
     const getDatos = async () => {
         try{
-            const transacciones_V = await axios.get('http://192.168.137.207:5000/transacciones-ventas');
-            const transacciones_C = await axios.get('http://192.168.137.207:5000/transacciones-compras');
+            const transacciones_V = await axios.get(`http://${IPv4}:5000/transacciones-ventas`);
+            const transacciones_C = await axios.get(`http://${IPv4}:5000/transacciones-compras`);
             
             const transacciones = [...transacciones_V.data.data, ...transacciones_C.data.data];
 

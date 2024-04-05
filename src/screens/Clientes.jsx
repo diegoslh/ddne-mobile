@@ -4,6 +4,7 @@ import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
 import CardPerson from '../components/CardPerson'
 import Clientimage from '../assets/img/client-azul.png'
 import axios from 'axios'
+import { IPv4 } from '../../config'
 
 const Clientes = ({ Opcion }) => {
 
@@ -11,7 +12,7 @@ const Clientes = ({ Opcion }) => {
 
   const [clientes, setClientes] = useState([]);
   useEffect(() => {
-    axios.get('http://192.168.137.207:5000/clientes')
+    axios.get(`http://${IPv4}:5000/clientes`)
       .then(response => {
         setClientes(response.data.data);
       })
