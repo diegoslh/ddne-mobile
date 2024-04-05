@@ -4,6 +4,7 @@ import { useFocusEffect } from '@react-navigation/native';
 
 import Transacciones from '../components/Transacciones';
 import Pendiente from './Pendiente';
+import { LinearGradient } from 'expo-linear-gradient';
 
 function Contabilidad() {
 
@@ -39,6 +40,13 @@ function Contabilidad() {
                                 style={styles.boton}
                                 onPress={() => setOpcion('Transacciones')}
                             >
+                                <LinearGradient
+                                    colors={['rgb(38, 143, 206)', 'rgba(126, 197, 241, 0.7)', 'rgba(26, 164, 247, 0.08)']}
+                                    start={{ x: 0, y: 0 }}
+                                    // end={{ x: 1, y: 0 }}
+                                    end={{ x: 1, y: 1 }}
+                                    style={StyleSheet.absoluteFill}
+                                />
                                 <Text style={styles.tittle}>Transacciones</Text>
                             </TouchableOpacity>
                         </View>
@@ -47,6 +55,13 @@ function Contabilidad() {
                                 style={styles.boton}
                                 onPress={() => setOpcion('Productos')}
                             >
+                                <LinearGradient
+                                    colors={['rgb(38, 143, 206)', 'rgba(126, 197, 241, 0.7)', 'rgba(26, 164, 247, 0.08)']}
+                                    start={{ x: 0, y: 0 }}
+                                    // end={{ x: 1, y: 0 }}
+                                    end={{ x: 1, y: 1 }}
+                                    style={StyleSheet.absoluteFill}
+                                />
                                 <Text style={styles.tittle}>Productos</Text>
                             </TouchableOpacity>
                         </View>

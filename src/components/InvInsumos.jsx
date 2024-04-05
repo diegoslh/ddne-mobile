@@ -14,9 +14,10 @@ import axios from 'axios';
 import useHardwareBackHandler from '../hooks/useHardwareBackHandler';
 import CardRegistroExpandible from './CardRegistroExpandible';
 import Loading from './Loading';
+import { IPv4 } from '../../config';
 
 // API ⚙️
-const ENDPOINT = 'http://192.168.137.207:5000/inv/insumos';
+const ENDPOINT = `http://${IPv4}:5000/inv/insumos`;
 
 const InvInsumos = ({Opcion}) => {
 

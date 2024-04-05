@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
 import Pendiente from './Pendiente';
 import Clientes from './Clientes';
+import { LinearGradient } from 'expo-linear-gradient';
 
 function Personas() {
 
@@ -30,6 +31,13 @@ function Personas() {
                                 style={styles.boton}
                                 onPress={() => setOpcion('Proveedores')}
                             >
+                                <LinearGradient
+                                    colors={['rgb(38, 143, 206)', 'rgba(126, 197, 241, 0.7)', 'rgba(26, 164, 247, 0.08)']}
+                                    start={{ x: 0, y: 0 }}
+                                    // end={{ x: 1, y: 0 }}
+                                    end={{ x: 1, y: 1 }}
+                                    style={StyleSheet.absoluteFill}
+                                />
                                 <Text style={styles.tittle}>Proveedores</Text>
                             </TouchableOpacity>
                         </View>
@@ -38,6 +46,13 @@ function Personas() {
                                 style={styles.boton}
                                 onPress={() => setOpcion('Clientes')}
                             >
+                                <LinearGradient
+                                    colors={['rgb(38, 143, 206)', 'rgba(126, 197, 241, 0.7)', 'rgba(26, 164, 247, 0.08)']}
+                                    start={{ x: 0, y: 0 }}
+                                    // end={{ x: 1, y: 0 }}
+                                    end={{ x: 1, y: 1 }}
+                                    style={StyleSheet.absoluteFill}
+                                />
                                 <Text style={styles.tittle}>Clientes</Text>
                             </TouchableOpacity>
                         </View>
@@ -46,6 +61,13 @@ function Personas() {
                                 style={styles.boton}
                                 onPress={() => setOpcion('Usuarios')}
                             >
+                                <LinearGradient
+                                    colors={['rgb(38, 143, 206)', 'rgba(126, 197, 241, 0.7)', 'rgba(26, 164, 247, 0.08)']}
+                                    start={{ x: 0, y: 0 }}
+                                    // end={{ x: 1, y: 0 }}
+                                    end={{ x: 1, y: 1 }}
+                                    style={StyleSheet.absoluteFill}
+                                />
                                 <Text style={styles.tittle}>Usuarios</Text>
                             </TouchableOpacity>
                         </View>
