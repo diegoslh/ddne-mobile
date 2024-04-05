@@ -13,7 +13,7 @@ const Clientes = ({ Opcion }) => {
   const [clientes, setClientes] = useState([]);
 
   const getClientes = () => {
-    axios.get('http://192.168.137.207:5000/clientes')
+    axios.get(`http://${IPv4}:5000/clientes`)
       .then(response => {
         setClientes(response.data.data);
       })
