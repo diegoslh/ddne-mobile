@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     marginBottom: '3%',
 
-    backgroundColor: 'rgba(4, 140, 186, 0.85)',
+    backgroundColor: '#0174BE',
+    // backgroundColor: 'rgba(4, 140, 186, 0.85)',
     borderTopWidth: 1,
     borderTopColor: '#ccc',
     // borderBottomWidth: 2,
@@ -143,14 +144,16 @@ const styles = StyleSheet.create({
 
   info_label: {
     fontSize: 15,
-    color: 'gray',
+    color: '#435585',
     fontWeight: '500',
     lineHeight: 28,
+    marginBottom: 7
   },
   info_data: {
     fontSize: 15,
     fontWeight: '500',
     lineHeight: 28,
+    marginBottom: 7
   },
   mensaje_vacio: {
     fontSize: 20,
@@ -158,4 +161,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: '5%'
   }
-})
+});

@@ -114,10 +114,10 @@ const InvInsumos = ({Opcion}) => {
         ? <Loading />
         : (
           <SafeAreaView style={styles.container}>
+
             <View style={styles.container_title}>
               <Text style={styles.title_page}>Registros Insumos</Text>
             </View>
-
 
             <ScrollView style={styles.scrollView} >
               {
@@ -138,7 +138,7 @@ const InvInsumos = ({Opcion}) => {
                         } {'\n'}
                         Unidades: {'\n'}
                         Peso: {'\n'}
-                        Proveedor:
+                        Proveedor: 
                       </Text>
 
                       <Text
@@ -155,12 +155,13 @@ const InvInsumos = ({Opcion}) => {
                         } {'\n'}
                         {r.unidades + '\n'}
                         {r.peso_insumo + ' kg' + '\n'}
-                        {r.nombre_empresa}
+                        {r.nombre_empresa} 
                       </Text>
                     </CardRegistroExpandible>
                   )) : <Text style={styles.mensaje_vacio}> No hay registros disponibles ✖️</Text>
               }
             </ScrollView>
+            
           </SafeAreaView>
         )
       }
@@ -173,28 +174,26 @@ export default InvInsumos;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     // paddingTop: StatusBar.currentHeight,
     // borderWidth: 1
   },
   container_title: {
     height: '6%',
     justifyContent: 'center',
-    // alignItems: 'center',
     paddingHorizontal: 10,
     paddingTop: 5,
     marginBottom: '3%',
 
-    backgroundColor: 'rgba(4, 140, 186, 0.85)',
+    backgroundColor: '#0174BE',
     borderTopWidth: 1,
     borderTopColor: '#ccc',
-    // borderBottomWidth: 2,
-    // borderBottomColor: 'rgb(4, 140, 186)',
     // borderWidth: 1,
   },
   scrollView: {
     flex: 1,
     paddingHorizontal: 5,
+    backgroundColor: '#fff',
   },
   title_page: {
     fontSize: 21,
@@ -208,14 +207,16 @@ const styles = StyleSheet.create({
 
   info_label: {
     fontSize: 15,
-    color: 'gray',
+    color: '#435585',
     fontWeight: '500',
     lineHeight: 28,
+    marginBottom: 7
   },
   info_data: {
     fontSize: 15,
     fontWeight: '500',
     lineHeight: 28,
+    marginBottom: 7
   },
   mensaje_vacio: {
     fontSize: 20,
@@ -223,4 +224,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: '5%'
   }
-})
+});

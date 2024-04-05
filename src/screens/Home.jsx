@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { StatusBar } from 'react-native-web';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, Text, View, Image } from 'react-native'
@@ -38,6 +39,7 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar/>
 
       <View style={styles.userContainer}>
         <Image source={userImg} style={styles.userImg} />
@@ -79,13 +81,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     // justifyContent: 'flex-end'
-    paddingTop: '8%'
+    paddingTop: '8%',
+     backgroundColor: 'white'
   },
   userContainer: {
     width: '100%',
     height: '40%',
     justifyContent: 'center',
-    // borderWidth: 1,N
+    // borderWidth: 1,
   },
   userImg: {
     // aspectRatio: 1 / 1
@@ -94,34 +97,47 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   infoContainer: {
-    borderWidth: 1,
+    borderWidth: 2,
+    borderColor: 'rgba(34, 136, 226, 0.66)',
     width: '101%',
     alignItems: 'center',
-    paddingVertical: 15,
+    paddingVertical: 20,
+    marginVertical: 20,
+    backgroundColor: 'rgba(101, 189, 215, 0.11)',
+    // backgroundColor: 'rgb(13, 65, 111)'
   },
   infoTitle: {
-    fontSize: 23,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: '2%'
+    marginBottom: '3%',
+    // color: 'white'
   },
   infoView: {
     flexDirection: 'row',
-    gap: 5,
-    // borderWidth: 1
+    // gap: 3,
+    width: '86%',
+    // borderWidth: 1    
   },
   infoLabel:{
     textAlign: 'justify',
     fontSize: 20,
     marginVertical: '1.2%',
-    width: '26%',
-    // borderWidth: 1
+    width: '43%',
+    lineHeight: 28,
+    paddingLeft: '12%',
+    paddingRight: 10,
+    // borderWidth: 1,
+    // color: 'rgb(215, 213, 213)'
   },
   infoText: {
     fontSize: 20,
     marginVertical: '1.2%',
     textTransform: 'capitalize',
-    width: '35%',
-    // borderWidth: 1
+    width: '43%',
+    lineHeight: 28,
+    // borderWidth: 1,
+    borderColor: 'red',
+    // color: 'rgb(215, 213, 213)'
   }
 })
 

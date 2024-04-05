@@ -21,7 +21,7 @@ const CardRegistroExpandible = ({ title, id, children }) => {
           {title} 
         </Text>
         
-        <Entypo name={!expandir ? "chevron-down" : "chevron-up"} size={16} color="black" style={styles.flecha_down}/>
+        <Entypo name={!expandir ? "chevron-down" : "chevron-up"} size={16} color="#1B1A55" style={styles.flecha_down}/>
 
       </TouchableOpacity>
 
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     // borderColor: '#ccc',
     // borderRadius: 8,
 
-    color: 'rgb(7, 164, 217)',
+    color: '#008DDA',
     fontSize: 18,
     fontWeight: '700',
     paddingVertical: 7,
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 7,
     paddingHorizontal: 15,
-    paddingLeft: 25
+    paddingLeft: 25,
+    backgroundColor: 'rgba(101, 189, 215, 0.08)'
   },
 })
