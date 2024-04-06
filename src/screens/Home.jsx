@@ -22,12 +22,13 @@ const Home = () => {
       try {
         const session = await AsyncStorage.getItem('user_session');
         session != null && setUser(JSON.parse(session));
+        console.log('datos session >>> ', session)
       } catch (e) {
         console.log(`Error al Obtener Datos de Session ${e}`);
       }
     })();
 
-  }, [])
+  }, []);
 
   const handleLink = (redirect) => {
     const url = redirect === 'api'

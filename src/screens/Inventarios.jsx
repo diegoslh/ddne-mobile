@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Image, ViewComponent } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
-import Pendiente from './Pendiente';
+import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import useUserSession from '../hooks/useUserSession';
+
+//🔸 Componentes de Contenido
 import InvInsumos from '../components/InvInsumos';
 import InvProduccion from '../components/InvProduccion';
-import { LinearGradient } from 'expo-linear-gradient';
+import NotAllowed from './NotAllowed';
+
+//🔸 Imagenes 
 import insumos from '../assets/insumos.png'
 import produccion from '../assets/produccion.png'
 
-function Inventarios() {
+function Inventarios () {
 
     const [opcion, setOpcion] = useState(null);
 
@@ -18,13 +24,20 @@ function Inventarios() {
         }, [])
     );
 
+    //🔸 Permisos del Usuario
+    const data_user = useUserSession();
+    const permisos_user = data_user ? data_user.allowed : []; 
+    console.log('data_user en Inventarios', permisos_user)
+
     return (
         <View style={styles.contenedor}>
             {
                 opcion === 'Inventario Insumos' ? (
-                    <InvInsumos Opcion={setOpcion} />
+                    permisos_user.includes('Insumos') ?
+                    <InvInsumos Opcion={setOpcion} /> : <NotAllowed Opcion={setOpcion}/>
                 ) : opcion === 'Inventario Produccion' ? (
-                    <InvProduccion Opcion={setOpcion} />
+                    permisos_user.includes('Produccion') ?
+                    <InvProduccion Opcion={setOpcion} /> : <NotAllowed Opcion={setOpcion}/>
                 ) : (
                     <View style={styles.opciones}>
                         <View style={styles.tarjeta}>

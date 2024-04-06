@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import useUserSession from '../hooks/useUserSession';
+import NotAllowed from './NotAllowed';
 import Pendiente from './Pendiente';
 import Clientes from '../components/Clientes';
 import Proveedores from '../components/Proveedores';
@@ -20,15 +22,23 @@ function Personas() {
         }, [])
     );
 
+    //🔸 Permisos del Usuario
+    const data_user = useUserSession();
+    const permisos_user = data_user ? data_user.allowed : []; 
+    console.log('data_user en Personas', permisos_user)
+
     return (
         <View style={styles.contenedor}>
             {
                 opcion === 'Proveedores' ? (
-                    <Proveedores Opcion={setOpcion} />
+                    permisos_user.includes('Proveedores') ?
+                    <Proveedores Opcion={setOpcion} /> : <NotAllowed Opcion={setOpcion}/>
                 ) : opcion === 'Clientes' ? (
-                    <Clientes Opcion={setOpcion} />
+                    permisos_user.includes('Clientes') ?
+                    <Clientes Opcion={setOpcion} /> : <NotAllowed Opcion={setOpcion}/>
                 ) : opcion === 'Usuarios' ? (
-                    <Pendiente Opcion={setOpcion} />
+                    permisos_user.includes('Usuarios') ?
+                    <Pendiente Opcion={setOpcion} /> : <NotAllowed Opcion={setOpcion}/>
                 ) : (
                     <View style={styles.opciones}>
                         <View style={styles.tarjeta}>

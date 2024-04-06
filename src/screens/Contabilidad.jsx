@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
-
+import useUserSession from '../hooks/useUserSession';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Transacciones from '../components/Transacciones';
 import Pendiente from './Pendiente';
 import { LinearGradient } from 'expo-linear-gradient';
 import transaccionImg from '../assets/img/transaccion.png';
 import productoImg from '../assets/img/producto.png';
+import NotAllowed from './NotAllowed';
 
 function Contabilidad() {
 
@@ -18,15 +20,22 @@ function Contabilidad() {
         }, [])
     );
 
+    //🔸 Permisos del Usuario
+    const data_user = useUserSession();
+    const permisos_user = data_user ? data_user.allowed : []; 
+    console.log('data_user en Contabilidad', permisos_user)
+
     return (
         <View style={styles.contenedor}>
             {
                 opcion === 'Informe' ? (
                     <Pendiente Opcion={setOpcion}/>
                 ) : opcion === 'Transacciones' ? (
-                    <Transacciones Opcion={setOpcion}/>
+                    permisos_user.includes('Transacciones') ?
+                    <Transacciones Opcion={setOpcion}/> : <NotAllowed Opcion={setOpcion}/>
                 ) : opcion === 'Productos' ? (
-                    <Pendiente Opcion={setOpcion}/>
+                    permisos_user.includes('Productos') ?
+                    <Pendiente Opcion={setOpcion}/> : <NotAllowed Opcion={setOpcion}/>
                 ) : (
                     <View style={styles.opciones}>
                         {/* <View style={styles.tarjeta}>
