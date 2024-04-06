@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
 import Pendiente from './Pendiente';
 import Clientes from './Clientes';
 import { LinearGradient } from 'expo-linear-gradient';
+import proveedorImg from '../assets/img/proveedor.png';
+import clienteImg from '../assets/img/cliente.png';
 
 function Personas() {
 
@@ -38,6 +40,9 @@ function Personas() {
                                     end={{ x: 1, y: 1 }}
                                     style={StyleSheet.absoluteFill}
                                 />
+                                <View style={styles.view_image}>
+                                    <Image source={proveedorImg} style={{ width: 85, height: 85 }} />
+                                </View>
                                 <Text style={styles.tittle}>Proveedores</Text>
                             </TouchableOpacity>
                         </View>
@@ -53,6 +58,9 @@ function Personas() {
                                     end={{ x: 1, y: 1 }}
                                     style={StyleSheet.absoluteFill}
                                 />
+                                <View style={styles.view_image}>
+                                    <Image source={clienteImg} style={{ width: 82, height: 82 }} />
+                                </View>
                                 <Text style={styles.tittle}>Clientes</Text>
                             </TouchableOpacity>
                         </View>
@@ -91,24 +99,33 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 20
+        gap: 30
     },
     tarjeta: {
         width: '85%'
     },
     boton: {
-        height: 160,
+        height: 180,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,
-        borderColor: '#2ca3d3',
         overflow: 'hidden',
-        borderWidth: 2,
+        borderColor: 'rgba(126, 197, 241, 0.7)',
+        borderWidth: 1,
+        // gap: 10,
+        flexDirection: 'row'
+    },
+    view_image: {
+        width: '40%',
+        // borderWidth: 1,
+        alignItems: 'center'
     },
     tittle: {
+        width: '50%',
         fontSize: 25,
         fontWeight: 'bold',
-        // color: '#2ca3d3'
+        color: 'rgb(0, 10, 67)',
+        // borderWidth: 1
     },
     logo: {
         position: 'absolute',
