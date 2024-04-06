@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
-import Pendiente from './Pendiente';
-import Clientes from './Clientes';
 import { LinearGradient } from 'expo-linear-gradient';
+
+import Pendiente from './Pendiente';
+import Clientes from '../components/Clientes';
+import Proveedores from '../components/Proveedores';
+
 import proveedorImg from '../assets/img/proveedor.png';
 import clienteImg from '../assets/img/cliente.png';
 
@@ -21,7 +24,7 @@ function Personas() {
         <View style={styles.contenedor}>
             {
                 opcion === 'Proveedores' ? (
-                    <Pendiente Opcion={setOpcion} />
+                    <Proveedores Opcion={setOpcion} />
                 ) : opcion === 'Clientes' ? (
                     <Clientes Opcion={setOpcion} />
                 ) : opcion === 'Usuarios' ? (

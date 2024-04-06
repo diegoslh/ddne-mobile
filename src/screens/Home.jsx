@@ -2,7 +2,7 @@ import { StatusBar } from 'react-native-web';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Linking } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { IPv4 } from '../../config';
+import { URI } from '../../config';
 
 //🔸 Imagenes 
 import userImg from "../assets/user.png";
@@ -31,7 +31,7 @@ const Home = () => {
 
   const handleLink = (redirect) => {
     const url = redirect === 'api'
-      ? `http://${IPv4}:5000`
+      ? `${URI}`
       : `http://${IPv4}:3000`
     ;
     Linking.openURL(url);

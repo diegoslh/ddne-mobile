@@ -10,10 +10,10 @@ import {
 } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { axios } from 'axios';
-import { IPv4 } from '../../config';
+import { URI } from '../../config';
 
 const transparent = 'rgba(0,0,0,0.5)';
-const ENDPOINT = `http://${IPv4}:5000/updateclient`;
+const ENDPOINT = `${URI}/updateclient`;
 
 
 

@@ -14,10 +14,10 @@ import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import LogoDDNE from '../../assets/LogoDDNE.png'
 import { LinearGradient } from 'expo-linear-gradient';
-import { IPv4 } from '../../config';
+import { URI } from '../../config';
 
 //API ⚙️
-const ENDPOINT = `http://${IPv4}:5000/login`;
+const ENDPOINT = `${URI}/login`;
 
 const LoginView = () => {
 
