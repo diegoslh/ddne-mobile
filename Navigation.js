@@ -1,4 +1,8 @@
+import { Image, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
+import axios from 'axios';
+import { URI } from './config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -18,10 +22,9 @@ import Home from './src/screens/Home';
 import Inventarios from './src/screens/Inventarios';
 import Contabilidad from './src/screens/Contabilidad';
 import Personas from './src/screens/Personas';
-import Pendiente from './src/screens/Pendiente';
-import { Image, Text, TouchableOpacity } from 'react-native';
 
-//🔸 Componentes para Header
+
+//🔸 Componentes para Header Interno
 const Favicon = ({ showText }) => {
   const redirect = useNavigation();  
   return (
@@ -36,11 +39,32 @@ const Favicon = ({ showText }) => {
     </TouchableOpacity>
   )
 }
+
 const Logout = () => {
+  //🔸 Eliminar Información al Cerrar Sesión del almacenamiento y Backend  
   const redirect = useNavigation();
+  const ENDPOINT = `${URI}/cerrar-sesion`;
+  
+  const removeSession = async () => {
+    await AsyncStorage.removeItem('user_session');
+    await axios.post(ENDPOINT)
+      .then(response => {
+        
+        if (response.data.success) {
+          console.log('Sesión cerrada exitosamente');
+          redirect.navigate("Login");
+        } else {
+          console.error('Error al cerrar sesión:', response.data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error en la llamada a la API:', error);
+      });
+  }
+
   return (
     <TouchableOpacity
-      onPress={() => redirect.navigate("Login")}
+      onPress={removeSession}
       style={{ flexDirection: 'row', alignItems: 'baseline', marginRight: 12 }}
     >
       <MaterialIcons name="logout" size={24} color="#D20062" />
