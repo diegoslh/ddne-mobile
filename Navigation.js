@@ -62,8 +62,8 @@ const Navigation = () => {
         // tabBarActiveBackgroundColor: '#048cba',
         tabBarInactiveBackgroundColor: '#048cba',
         tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.8)',
-        tabBarStyle: { height: '7%', alignItems: 'center'},
-        tabBarLabelStyle: {paddingBottom: 7}
+        tabBarStyle: { height: '7%'},
+        tabBarLabelStyle: {paddingBottom: 7, fontSize: 14},
       }}
     >
 

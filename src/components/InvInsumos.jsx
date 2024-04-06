@@ -72,6 +72,7 @@ const InvInsumos = ({Opcion}) => {
                     <CardRegistroExpandible
                       title={`${r.id_inventario_insumos} - ${r.fk_tipo_insumo}`}
                       id={r.id_inventario_insumos}
+                      key={r.id_inventario_insumos + 'card'}
                     >
                       <Text
                         style={styles.info_label}

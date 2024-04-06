@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  ToastAndroid,  
+  ToastAndroid,
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
@@ -18,7 +18,7 @@ import { IPv4 } from '../../config';
 // API ⚙️
 const ENDPOINT = `http://${IPv4}:5000/inv/produccion`;
 
-const InvProduccion = ({Opcion}) => {
+const InvProduccion = ({ Opcion }) => {
 
   // Hooks 🔗
   const [isLoading, setIsLoading] = useState(true);
@@ -67,6 +67,7 @@ const InvProduccion = ({Opcion}) => {
                 registros && registros.length > 0 ?
                   registros.map(r => (
                     <CardRegistroExpandible
+                      key={r.id_inv_produccion + 'card'}
                       title={`${r.id_inv_produccion} - ${r.fk_tipo_producto} ${r.id_precios}`}
                       id={r.id_inv_produccion}
                     >
@@ -74,7 +75,7 @@ const InvProduccion = ({Opcion}) => {
                         style={styles.info_label}
                         key={r.id_inv_produccion + 'info_label'}
                       >
-                        N° Lote: {'\n'}                        
+                        N° Lote: {'\n'}
                         Medida: {'\n'}
                         Peso: {'\n'}
                         Color: {'\n'}
@@ -90,7 +91,7 @@ const InvProduccion = ({Opcion}) => {
                         {r.unidad_medida + '\n'}
                         {r.peso_producto + ' kg' + '\n'}
                         {r.fk_color + '\n'}
-                        $ {r.precio + '\n' }
+                        $ {r.precio + '\n'}
                         {r.fecha_registro.split('T')[0]}
                       </Text>
                     </CardRegistroExpandible>
