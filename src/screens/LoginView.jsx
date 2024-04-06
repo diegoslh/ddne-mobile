@@ -17,7 +17,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { IPv4 } from '../../config';
 
 //API ⚙️
-// const ENDPOINT = 'http://10.0.2.2:5000/login';
 const ENDPOINT = `http://${IPv4}:5000/login`;
 
 const LoginView = () => {
@@ -282,8 +281,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     backgroundColor: '#fff',
-    borderTopColor: 'rgb(8, 140, 185)',
-    borderTopWidth: 2
+    // borderTopColor: 'rgb(8, 140, 185)',
+    // borderTopWidth: 2
     // padding: 10
   },
   logoContainer: {

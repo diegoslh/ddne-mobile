@@ -21,9 +21,7 @@ import Personas from './src/screens/Personas';
 import Pendiente from './src/screens/Pendiente';
 import { Image, Text, TouchableOpacity } from 'react-native';
 
-// Componentes para Header
-
-
+//🔸 Componentes para Header
 const Favicon = ({ showText }) => {
   const redirect = useNavigation();  
   return (
@@ -31,7 +29,7 @@ const Favicon = ({ showText }) => {
       onPress={() => redirect.navigate("Home")} 
       style={{ flexDirection: 'row', alignItems: 'center' }}
     >
-      <Image source={favicon} style={{ width: 28, height: 28, marginLeft: 10, marginRight: 10 }} />
+      <Image source={favicon} style={{ width: 28, height: 28, marginLeft: 15, marginRight: 10 }} />
       {showText && <Text style={{ fontSize: 20, fontWeight: '600' }}>DDNE Inventory</Text>}
 
       {/* <Text style={{ fontSize: 20, fontWeight: '600' }}>DDNE {showText && 'Inventory'}</Text> */}
@@ -63,7 +61,9 @@ const Navigation = () => {
         tabBarActiveBackgroundColor: 'rgb(9, 167, 221)',
         // tabBarActiveBackgroundColor: '#048cba',
         tabBarInactiveBackgroundColor: '#048cba',
-        tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.8)'
+        tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.8)',
+        tabBarStyle: { height: '7%', alignItems: 'center'},
+        tabBarLabelStyle: {paddingBottom: 7}
       }}
     >
 
@@ -171,13 +171,13 @@ const MyStack = () => {
           name="Login"
           component={LoginView}
           options={{
-            title: 'Inicio de Sesión',
+            title: '',
             headerTintColor: '#023793',
+            headerTitleAlign: 'center',
+            headerShown: false,
             // headerTintColor: '#fff',
             // headerStyle: { backgroundColor: '#1A4055' },
-            headerTitleAlign: 'center',
             // headerTransparent: true,
-            headerShown: false,
           }}
         />
 

@@ -2,6 +2,7 @@ import { StatusBar } from 'react-native-web';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Linking } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { IPv4 } from '../../config';
 
 //🔸 Imagenes 
 import userImg from "../assets/user.png";
@@ -30,8 +31,8 @@ const Home = () => {
 
   const handleLink = (redirect) => {
     const url = redirect === 'api'
-      ? 'http://192.168.0.29:5000'
-      : 'http://192.168.0.29:3000'
+      ? `http://${IPv4}:5000`
+      : `http://${IPv4}:3000`
     ;
     Linking.openURL(url);
   };
@@ -50,12 +51,12 @@ const Home = () => {
 
         <View style={styles.infoView}>
           <Text style={styles.infoLabel}> Nombres:</Text>
-          <Text style={styles.infoText}> {user?.names || 'No Disponible'} </Text>
+          <Text style={styles.infoText} numberOfLines={1}> {user?.names || 'No Disponible'} </Text>
         </View>
 
         <View style={styles.infoView}>
           <Text style={styles.infoLabel}> Usuario: </Text>
-          <Text style={styles.infoText}> {user?.username || 'No Disponible'} </Text>
+          <Text style={styles.infoText} numberOfLines={1}> {user?.username || 'No Disponible'} </Text>
         </View>
 
         <View style={styles.infoView}>
@@ -65,7 +66,7 @@ const Home = () => {
 
         <View style={styles.infoView}>
           <Text style={styles.infoLabel}> Fecha:</Text>
-          <Text style={styles.infoText}>{current_date || 'No Disponible'} </Text>
+          <Text style={styles.infoText} numberOfLines={1}>{current_date || 'No Disponible'} </Text>
         </View>
       </View>
 
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
   },
   userContainer: {
     width: '100%',
-    height: '40%',
+    height: '35%',
     justifyContent: 'center',
     // borderWidth: 1,
   },
@@ -119,11 +120,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'rgba(34, 136, 226, 0.66)',
     width: '101%',
+    height: '40%',
     alignItems: 'center',
-    paddingVertical: 30,
+    justifyContent: 'center',
+    paddingVertical: 2,
     marginVertical: 20,
     backgroundColor: 'rgba(101, 189, 215, 0.11)',
-
+    overflow: 'hidden'
   },
   infoTitle: {
     fontSize: 24,
@@ -133,8 +136,8 @@ const styles = StyleSheet.create({
   },
   infoView: {
     flexDirection: 'row',
-    // gap: 3,
     width: '86%',
+    // gap: 3,
     // borderWidth: 1    
   },
   infoLabel: {
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginVertical: '1.2%',
     width: '43%',
-    lineHeight: 28,
+    lineHeight: 26,
     paddingLeft: '12%',
     paddingRight: 10,
     // borderWidth: 1,
@@ -152,10 +155,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginVertical: '1.2%',
     textTransform: 'capitalize',
-    width: '43%',
+    width: '60%',
     lineHeight: 28,
+    // borderColor: 'red',
     // borderWidth: 1,
-    borderColor: 'red',
     // color: 'rgb(215, 213, 213)'
   },
   direccionamiento: {
@@ -166,7 +169,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '101%',
-    height: '19%',
+    height: '18%',
     paddingHorizontal: '8%'
   },
   direccionamiento_text: {

@@ -25,8 +25,6 @@ function Inventarios() {
                     <InvInsumos Opcion={setOpcion} />
                 ) : opcion === 'Inventario Produccion' ? (
                     <InvProduccion Opcion={setOpcion} />
-                ) : opcion === 'Segimiento de Lote' ? (
-                    <Pendiente Opcion={setOpcion} />
                 ) : (
                     <View style={styles.opciones}>
                         <View style={styles.tarjeta}>
@@ -65,14 +63,6 @@ function Inventarios() {
                                 <Text style={styles.tittle}>Inventario Producción</Text>
                             </TouchableOpacity>
                         </View>
-                        {/* <View style={styles.tarjeta}>
-                            <TouchableOpacity 
-                                style={styles.boton}
-                                onPress={() => setOpcion('Segimiento de Lote')}
-                            >
-                                <Text style={styles.tittle}>Segimiento de Lote</Text>
-                            </TouchableOpacity>
-                        </View> */}
                         <Text style={styles.logo}>DDNE Inventory</Text>
                     </View>
                 )
