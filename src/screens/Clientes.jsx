@@ -4,7 +4,9 @@ import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
 import CardPerson from '../components/CardPerson'
 import Clientimage from '../assets/img/client-azul.png'
 import axios from 'axios'
+import AddClient from '../components/AddClient'
 import { IPv4 } from '../../config'
+import { TouchableOpacity } from 'react-native-web'
 
 const Clientes = ({ Opcion }) => {
 
@@ -31,6 +33,7 @@ const Clientes = ({ Opcion }) => {
   }
 
   return (
+    <>
     <View style={styles.contenedor}>
       <View style={styles.container_title}>
         <Text style={styles.title_page}>Clientes</Text>
@@ -40,6 +43,7 @@ const Clientes = ({ Opcion }) => {
         <CardPerson
           key={cliente.persona_id}
           icon={Clientimage}
+          nombreswitch={'clientes'}
           nombre={`${cliente.nombre_1} ${cliente.nombre_2}`}
           apellido={cliente.apellido_1}
           telefono={cliente.telefono}
@@ -52,8 +56,11 @@ const Clientes = ({ Opcion }) => {
           reload={reload}
         />
       ))}
+      <AddClient  reload={reload}/>
     </View>
+    </>
   );
+
 };
 
 export default Clientes

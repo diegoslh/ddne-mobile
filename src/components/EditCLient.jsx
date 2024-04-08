@@ -9,7 +9,7 @@ import {
   TextInput,
 } from "react-native";
 import { Feather } from '@expo/vector-icons';
-import { axios } from 'axios';
+import  axios  from 'axios';
 import { IPv4 } from '../../config';
 
 const transparent = 'rgba(0,0,0,0.5)';
@@ -17,7 +17,7 @@ const ENDPOINT = `http://${IPv4}:5000/updateclient`;
 
 
 
-const EditClient = ({ direccion, nit, desc_empresa, nombres, apellidos, telefono, email, empresa, id }) => {
+const EditClient = ({ direccion, nit, reload, desc_empresa, nombres, apellidos, telefono, email, empresa, id }) => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -45,27 +45,30 @@ const EditClient = ({ direccion, nit, desc_empresa, nombres, apellidos, telefono
   const handleSubmit = async () => {
 
     console.log('Formulario >> ', data);
-    // try {
-    //   const response = await axios.put(ENDPOINT, data);
-    //   // console.log(response)
-    //   if (response.data.success) {
+    try {
+      const response = await axios.put(`${ENDPOINT}`, data);
+      if (response.data.success) {
+            ToastAndroid.show('Se he editado correctamente el cliente', ToastAndroid.LONG);
+            setModalVisible(false);
+            reload()
+        return
+      } else {
+        ToastAndroid('Ha ocurrido un error al eliminar al cliente', ToastAndroid.LONG);
+        setModalVisible(false);
+      }
 
-    //     // redirect.navigate("HomeTab");
-    //     return
-    //   }
+      console.log(` ${response.data.message}`);
+      ToastAndroid.show(` ${response.data.message}`, ToastAndroid.SHORT)
 
-    //   console.log(` ${response.data.message}`);
-    //   ToastAndroid.show(` ${response.data.message}`, ToastAndroid.SHORT)
+    } catch (error) {
+      ToastAndroid('Ha ocurrido un error al enviar los datos', ToastAndroid.LONG);
+      // console.log(error.response.status)
+      // console.error('Error al enviar datos:', error);
 
-    // } catch (error) {
+      // error.response.status === 401 ? ToastAndroid.show(` ${error.response.data.message}`, ToastAndroid.SHORT)
+      // : ToastAndroid.show('❌ Error al enviar datos:', ToastAndroid.SHORT);
 
-    //   // console.log(error.response.status)
-    //   console.error('Error al enviar datos:', error);
-
-    //   error.response.status === 401 ? ToastAndroid.show(` ${error.response.data.message}`, ToastAndroid.SHORT)
-    //   : ToastAndroid.show('❌ Error al enviar datos:', ToastAndroid.SHORT);
-
-    // }
+    }
   };
 
   return (
@@ -188,13 +191,14 @@ const EditClient = ({ direccion, nit, desc_empresa, nombres, apellidos, telefono
                 </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.eliminar} onPress={handleSubmit}>
+              <TouchableOpacity style={styles.eliminar}>
                 <Text
                   style={{
                     color: "#F4EEE0",
                     fontWeight: "bold",
                   }}
                   onPress={() => {
+                    handleSubmit();
                     setModalVisible(false);
                   }}
                 >
