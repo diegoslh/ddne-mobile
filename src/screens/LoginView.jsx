@@ -24,7 +24,7 @@ const LoginView = () => {
   const redirect = useNavigation();
 
   const [formData, setFormData] = useState({
-    usuario: 'Contabilidad',
+    usuario: 'admin',
     password: 'contra123'
   });
 
