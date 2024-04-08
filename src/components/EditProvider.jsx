@@ -5,7 +5,7 @@ import {
   View,
   Modal,
   TouchableOpacity,
-  // ToastAndroid,
+  ToastAndroid,
   TextInput,
 } from "react-native";
 import { Feather } from '@expo/vector-icons';
@@ -140,14 +140,14 @@ const Editprovider = ({ direccion, nit, reload, desc_empresa, nombres, apellidos
                 />
               </View>
 
-              <View style={styles.inputContainer}>
+              {/* <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>NIT</Text>
                 <TextInput style={styles.input} 
                   value={data.nit}
                   editable={false}
                   onChangeText={(value) => dataInto('nit', value)}
                 />
-              </View>
+              </View> */}
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Empresa</Text>
@@ -158,14 +158,14 @@ const Editprovider = ({ direccion, nit, reload, desc_empresa, nombres, apellidos
                 />
               </View>
 
-              <View style={styles.inputContainer}>
+              {/* <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Descripcion</Text>
                 <TextInput style={styles.input} 
                   value={data.desc_empresa}
                   onChangeText={(value) => dataInto('desc_empresa', value)}
                   editable={false}
                 />
-              </View>
+              </View> */}
 
             </View>
 
@@ -221,8 +221,8 @@ const styles = StyleSheet.create({
     padding: 15,
     width: '90%',
     borderRadius: 10,
-    flex: 1,
-    height: 660
+    height: 560,
+    // flex: 1,
   },
   cerrar: {
     borderColor: 'blue',

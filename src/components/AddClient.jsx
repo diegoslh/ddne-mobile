@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Modal, TextInput, ToastAndroid,  } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
-import { IPv4 } from '../../config';
+import { URI } from '../../config';
 import { SelectList } from 'react-native-dropdown-select-list'
 import  axios  from 'axios';
 
 
 const transparent = 'rgba(0,0,0,0.5)';
-const ENDPOINT = `http://${IPv4}:5000/createclient`;
+const ENDPOINT = `http://${URI}/createclient`;
 
 
 
@@ -15,15 +15,15 @@ const AddClient = ({reload}) => {
   const [modalVisible, setModalVisible] = useState(false);
   
   const datos_iniciales = {
-    persona_id: null,
-    nombres: '',
-    apellidos: '',
-    telefono: '',
-    direccion: '',
-    email: '',
+    persona_id: '12351',
+    nombres: 'jose miguel',
+    apellidos: 'perez gomez',
+    telefono: '3124725962',
+    direccion: 'direccion prueba',
+    email: 'email@gmail.com',
     nit: null, 
-    empresa: '',
-    desc_empresa: '', 
+    empresa: 'empresa',
+    desc_empresa: 'desc', 
   }
 
 const [selected, setSelected] = useState('');
@@ -54,30 +54,33 @@ const datatipodoc = (key, value) => {
 
   const handleSubmit= async () => {
     console.log('Entro al fomulario');
+    // const postdata = selected.concat(data);
+    console.log(selected)
+    console.log(datos_iniciales)
 
-    try {
+    // try {
 
-      // const postdata = {
-      //   ...selected,
-      //   ...data
-      // };
+    //   // const postdata = {
+    //   //   ...selected,
+    //   //   ...data
+    //   // };
 
-      // const postdata = selected.concat(data);
 
-      const response = await axios.post(`${ENDPOINT}`, postdata);
-      console.log(response)
 
-      if (response.data.success) {
-        ToastAndroid.show('Se ha añadido el cliente correctamente', ToastAndroid.LONG);
-        setModalVisible(false);
-        reload();
-      } else {
-        ToastAndroid.show('No se ha podido añadir al cliente', ToastAndroid.LONG);
-        setModalVisible(false);
-      }
-    } catch (error) {
-      ToastAndroid('Ha ocurrido un error al enviar los datos', ToastAndroid.LONG);
-    }
+    //   const response = await axios.post(`${ENDPOINT}`, postdata);
+    //   console.log(response)
+
+    //   if (response.data.success) {
+    //     ToastAndroid.show('Se ha añadido el cliente correctamente', ToastAndroid.LONG);
+    //     setModalVisible(false);
+    //     reload();
+    //   } else {
+    //     ToastAndroid.show('No se ha podido añadir al cliente', ToastAndroid.LONG);
+    //     setModalVisible(false);
+    //   }
+    // } catch (error) {
+    //   ToastAndroid('Ha ocurrido un error al enviar los datos', ToastAndroid.LONG);
+    // }
   };
 
 
@@ -173,17 +176,26 @@ const datatipodoc = (key, value) => {
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>NIT</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} 
+                onChangeText={(value) => dataInto("nit", value)}
+                />
+
               </View>
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Empresa</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} 
+                onChangeText={(value) => dataInto("empresa", value)}
+                />
+
               </View>
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Descripcion</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} 
+                onChangeText={(value) => dataInto("desc_empresa", value)}
+                />
+
               </View>
             </View>
 
