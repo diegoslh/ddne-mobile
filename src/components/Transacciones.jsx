@@ -4,12 +4,12 @@ import axios from 'axios'
 
 import { Entypo } from '@expo/vector-icons';
 import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
-import { IPv4 } from '../../config';
+import { URI } from '../../config';
 
 function Transacciones({ Opcion }) {
     useHardwareBackHandler({ Opcion })
 
-    console.log(IPv4)
+    console.log(URI)
 
     // const [transacciones_V, setTransacciones_V] = useState([])
     // const [transacciones_C, setTransacciones_C] = useState([])
@@ -18,8 +18,8 @@ function Transacciones({ Opcion }) {
 
     const getDatos = async () => {
         try{
-            const transacciones_V = await axios.get(`http://${IPv4}:5000/transacciones-ventas`);
-            const transacciones_C = await axios.get(`http://${IPv4}:5000/transacciones-compras`);
+            const transacciones_V = await axios.get(`${URI}/transacciones-ventas`);
+            const transacciones_C = await axios.get(`${URI}/transacciones-compras`);
             
             const transacciones = [...transacciones_V.data.data, ...transacciones_C.data.data];
 

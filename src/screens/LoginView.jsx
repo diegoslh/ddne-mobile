@@ -14,18 +14,17 @@ import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import LogoDDNE from '../../assets/LogoDDNE.png'
 import { LinearGradient } from 'expo-linear-gradient';
-import { IPv4 } from '../../config';
+import { URI } from '../../config';
 
 //API ⚙️
-// const ENDPOINT = 'http://10.0.2.2:5000/login';
-const ENDPOINT = `http://${IPv4}:5000/login`;
+const ENDPOINT = `${URI}/login`;
 
 const LoginView = () => {
 
   const redirect = useNavigation();
 
   const [formData, setFormData] = useState({
-    usuario: 'J.operaciones',
+    usuario: 'admin',
     password: 'contra123'
   });
 
@@ -282,8 +281,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     backgroundColor: '#fff',
-    borderTopColor: 'rgb(8, 140, 185)',
-    borderTopWidth: 2
+    // borderTopColor: 'rgb(8, 140, 185)',
+    // borderTopWidth: 2
     // padding: 10
   },
   logoContainer: {

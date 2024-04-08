@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Modal, TouchableOpacity,
-   ToastAndroid 
+  //  ToastAndroid 
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
-import { IPv4 } from '../../config';
+import { URI } from '../../config';
 
 const transparent = 'rgba(0,0,0,0.5)';
 
 const DeleteClient = ({nombre, id, reload}) => {
     const [modalVisible, setModalVisible] = useState(false);
 
-    const url = `http://${IPv4}:5000/deleteClient`;
+    const url = `${URI}/deleteClient`;
 
     const handleSubmit = async () => {
       console.log(id)

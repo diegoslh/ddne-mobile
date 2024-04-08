@@ -14,10 +14,10 @@ import axios from 'axios';
 import useHardwareBackHandler from '../hooks/useHardwareBackHandler';
 import CardRegistroExpandible from './CardRegistroExpandible';
 import Loading from './Loading';
-import { IPv4 } from '../../config';
+import { URI } from '../../config';
 
 // API ⚙️
-const ENDPOINT = `http://${IPv4}:5000/inv/insumos`;
+const ENDPOINT = `${URI}/inv/insumos`;
 
 const InvInsumos = ({Opcion}) => {
 
@@ -72,6 +72,7 @@ const InvInsumos = ({Opcion}) => {
                     <CardRegistroExpandible
                       title={`${r.id_inventario_insumos} - ${r.fk_tipo_insumo}`}
                       id={r.id_inventario_insumos}
+                      key={r.id_inventario_insumos + 'card'}
                     >
                       <Text
                         style={styles.info_label}
