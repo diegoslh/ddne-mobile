@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Modal, TouchableOpacity,
-   ToastAndroid 
+  //  ToastAndroid 
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';

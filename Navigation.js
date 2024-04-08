@@ -18,6 +18,7 @@ import favicon from './assets/favicon.png'
 
 // Screens ✨
 import LoginView from './src/screens/LoginView';
+import LoginView1 from './src/screens/LoginView1';
 import Home from './src/screens/Home';
 import Inventarios from './src/screens/Inventarios';
 import Contabilidad from './src/screens/Contabilidad';
@@ -193,7 +194,7 @@ const MyStack = () => {
 
         <Stack.Screen
           name="Login"
-          component={LoginView}
+          component={LoginView1}
           options={{
             title: '',
             headerTintColor: '#023793',

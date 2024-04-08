@@ -5,7 +5,7 @@ import {
   View,
   Modal,
   TouchableOpacity,
-  ToastAndroid,
+  // ToastAndroid,
   TextInput,
 } from "react-native";
 import { Feather } from '@expo/vector-icons';
