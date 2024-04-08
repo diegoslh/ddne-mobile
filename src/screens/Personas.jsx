@@ -11,6 +11,7 @@ import Proveedores from '../components/Proveedores';
 
 import proveedorImg from '../assets/img/proveedor.png';
 import clienteImg from '../assets/img/cliente.png';
+import usuarioImg from '../assets/img/usuario.png';
 
 function Personas() {
 
@@ -54,11 +55,12 @@ function Personas() {
                                     style={StyleSheet.absoluteFill}
                                 />
                                 <View style={styles.view_image}>
-                                    <Image source={proveedorImg} style={{ width: 85, height: 85 }} />
+                                    <Image source={proveedorImg} style={{ width: 90, height: 90, tintColor: '#18193F' }} />
                                 </View>
                                 <Text style={styles.tittle}>Proveedores</Text>
                             </TouchableOpacity>
                         </View>
+                        
                         <View style={styles.tarjeta}>
                             <TouchableOpacity
                                 style={styles.boton}
@@ -72,11 +74,12 @@ function Personas() {
                                     style={StyleSheet.absoluteFill}
                                 />
                                 <View style={styles.view_image}>
-                                    <Image source={clienteImg} style={{ width: 82, height: 82 }} />
+                                    <Image source={clienteImg} style={{ width: 90, height: 90, tintColor: '#18193F' }} />
                                 </View>
                                 <Text style={styles.tittle}>Clientes</Text>
                             </TouchableOpacity>
                         </View>
+
                         {/* <View style={styles.tarjeta}>
                             <TouchableOpacity
                                 style={styles.boton}
@@ -89,11 +92,16 @@ function Personas() {
                                     end={{ x: 1, y: 1 }}
                                     style={StyleSheet.absoluteFill}
                                 />
+                                <View style={styles.view_image}>
+                                    <Image source={usuarioImg} style={{ width: 90, height: 90, tintColor: '#18193F' }} />
+                                </View>
                                 <Text style={styles.tittle}>Usuarios</Text>
                             </TouchableOpacity>
                         </View> */}
+                        
                         <Text style={styles.logo}>DDNE Inventory</Text>
                     </View>
+
                 )
             }
         </View>
