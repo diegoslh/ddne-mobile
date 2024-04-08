@@ -6,5 +6,5 @@ Es una cadena de caracteres que identifica un recurso particular. En el contexto
 const PORT = process.env.PORT || 5000;
 
 //♨️ Conexión con API 
-const IPv4 = '192.168.0.15';
+const IPv4 = '10.175.80.83';
 export const URI = `http://${IPv4}:${PORT}`;

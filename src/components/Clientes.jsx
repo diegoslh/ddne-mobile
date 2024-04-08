@@ -44,6 +44,7 @@ const Clientes = ({ Opcion }) => {
         <CardPerson
           key={cliente.persona_id}
           icon={Clientimage}
+          nombreswitch={'clientes'}
           nombre={`${cliente.nombre_1} ${cliente.nombre_2 ? cliente.nombre_2 : ''}`}
           apellido={`${cliente.apellido_1} ${cliente.apellido_2 ? cliente.apellido_2 : ''}`}
           telefono={cliente.telefono}
@@ -55,7 +56,7 @@ const Clientes = ({ Opcion }) => {
           id={cliente.persona_id}
           reload={reload}
         />
-      ))}
+      ))} 
       <AddClient  reload={reload}/>
     </View>
     </>

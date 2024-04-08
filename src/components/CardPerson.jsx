@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import DeleteClient from './DeleteClient'
 import EditClient from './EditCLient'
+import Editprovider from './EditProvider'
+import DeleteProvider from './Deleteprovider'
 
 const CardPerson = ({icon, nombre, apellido, telefono, correo, empresa, id, reload, direccion, nit, desc_empresa, nombreswitch}) => {
 
@@ -29,6 +31,25 @@ const CardPerson = ({icon, nombre, apellido, telefono, correo, empresa, id, relo
         );
         break;
 
+        case "proveedores":
+          setModal(
+            <View style={styles.opciones}>
+              <Editprovider
+                id={id}
+                nombres={nombre}
+                apellidos={apellido}
+                telefono={telefono}
+                email={correo}
+                empresa={empresa}
+                reload={reload}
+                direccion={direccion}
+                nit={nit}
+                desc_empresa={desc_empresa}
+              />
+              <DeleteProvider nombre={nombre} id={id} reload={reload}/>
+            </View>
+          );
+          break;
         default:
           setModal(null);
           break;
