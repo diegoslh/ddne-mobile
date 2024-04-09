@@ -13,11 +13,11 @@ import axios from 'axios';
 import { URI } from '../../config';
 
 const transparent = 'rgba(0,0,0,0.5)';
-const ENDPOINT = `${URI}/updateclient`;
+const ENDPOINT = `${URI}/updateprovider`;
 
 
 
-const EditClient = ({ direccion, nit, reload, desc_empresa, nombres, apellidos, telefono, email, empresa, id }) => {
+const Editprovider = ({ direccion, nit, reload, desc_empresa, nombres, apellidos, telefono, email, empresa, id }) => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -46,14 +46,14 @@ const EditClient = ({ direccion, nit, reload, desc_empresa, nombres, apellidos, 
 
     console.log('Formulario >> ', data);
     try {
-      const response = await axios.put(`${ENDPOINT}`, data);
+      const response = await axios.put(`${ENDPOINT}/${id}`, data);
       if (response.data.success) {
-            ToastAndroid.show('Cliente Editado ✅', ToastAndroid.LONG);
+            ToastAndroid.show('Proveedor Editado ✅', ToastAndroid.LONG);
             setModalVisible(false);
             reload()
         return
       } else {
-        ToastAndroid('Error al editar Cliente ❌', ToastAndroid.LONG);
+        ToastAndroid('Error al eliminar Proveedor ❌', ToastAndroid.LONG);
         setModalVisible(false);
       }
 
@@ -222,8 +222,8 @@ const styles = StyleSheet.create({
     padding: 15,
     width: '90%',
     borderRadius: 10,
+    height: 560,
     // flex: 1,
-    height: 560
   },
   cerrar: {
     borderColor: 'blue',
@@ -284,4 +284,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditClient;
+export default Editprovider;

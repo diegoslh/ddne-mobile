@@ -11,7 +11,6 @@ import NotAllowed from './NotAllowed';
 
 import Transacciones from '../components/Transacciones';
 import Productos from '../components/Productos';
-import Pendiente from './Pendiente';
 
 function Contabilidad() {
 
@@ -26,14 +25,12 @@ function Contabilidad() {
     //🔸 Permisos del Usuario
     const data_user = useUserSession();
     const permisos_user = data_user ? data_user.allowed : []; 
-    console.log('data_user en Contabilidad', permisos_user)
+    // console.log('data_user en Contabilidad', permisos_user)
 
     return (
         <View style={styles.contenedor}>
             {
-                opcion === 'Informe' ? (
-                    <Pendiente Opcion={setOpcion}/>
-                ) : opcion === 'Transacciones' ? (
+                opcion === 'Transacciones' ? (
                     permisos_user.includes('Transacciones') ?
                     <Transacciones Opcion={setOpcion}/> : <NotAllowed Opcion={setOpcion}/>
                 ) : opcion === 'Productos' ? (

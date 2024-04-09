@@ -8,10 +8,10 @@ import { URI } from '../../config';
 
 const transparent = 'rgba(0,0,0,0.5)';
 
-const DeleteClient = ({nombre, id, reload}) => {
+const DeleteProvider = ({nombre, id, reload}) => {
     const [modalVisible, setModalVisible] = useState(false);
 
-    const url = `${URI}/deleteClient`;
+    const url = `${URI}/deleteprovider`;
 
     const handleSubmit = async () => {
       console.log(id)
@@ -22,11 +22,11 @@ const DeleteClient = ({nombre, id, reload}) => {
 
 
         if (data.data.success){
-          ToastAndroid.show('Cliente Eliminado ✅', ToastAndroid.LONG);
+          ToastAndroid.show('Proveedor Eliminado ✅', ToastAndroid.LONG);
           reload()
           setModalVisible(false);
         } else {
-          ToastAndroid.show('Error al eliminar Cliente ❌', ToastAndroid.LONG);
+          ToastAndroid.show('Error al eliminar Proveedor ❌', ToastAndroid.LONG);
           setModalVisible(false);
         }
       } catch (error) {
@@ -61,7 +61,7 @@ const DeleteClient = ({nombre, id, reload}) => {
                   fontSize: 16
                 }}
               >
-                ¿ Seguro que desea eliminar a {nombre} ?
+                ¿ Seguro que desea eliminar a {nombre}?
             </Text>
 
               <View style={styles.modaltop}>
@@ -145,4 +145,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default DeleteClient;
+export default DeleteProvider;

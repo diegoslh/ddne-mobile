@@ -1,20 +1,19 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, SafeAreaView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
 import CardPerson from './CardPerson'
 import Clientimage from '../assets/img/client-azul.png'
 import axios from 'axios'
 import { URI } from '../../config'
-import AddProvider from './AddProvider'
 
-const Proveedores = ({ Opcion }) => {
+const Usuarios = ({ Opcion }) => {
 
   useHardwareBackHandler({ Opcion })
 
   const [clientes, setClientes] = useState([]);
 
   const getClientes = () => {
-    axios.get(`${URI}/proveedores`)
+    axios.get(`${URI}/usuarios`)
       .then(response => {
         setClientes(response.data.data);
       })
@@ -32,36 +31,40 @@ const Proveedores = ({ Opcion }) => {
   }
 
   return (
-    <ScrollView>
-      <View style={styles.contenedor}>
-        <View style={styles.container_title}>
-          <Text style={styles.title_page}>Proveedores</Text>
-          <AddProvider reload={reload} />
-        </View>
+    <ScrollView style={{flexGrow: 1}}> 
 
-        {clientes.map(cliente => (
+    <View style={styles.contenedor}>
+
+      <View style={styles.container_title}>
+        <Text style={styles.title_page}>Usuarios</Text>
+      </View>
+
+      {/* <ScrollView > */}
+        {clientes.map(user => (
           <CardPerson
-            key={cliente.persona_id}
+            key={user.persona_id}
             icon={Clientimage}
-            nombreswitch={'proveedores'}
-            nombre={`${cliente.nombre_1} ${cliente.nombre_2 ? cliente.nombre_2 : ''}`}
-            apellido={`${cliente.apellido_1} ${cliente.apellido_2 ? cliente.apellido_2 : ''}`}
-            telefono={cliente.telefono}
-            correo={cliente.correo}
-            empresa={cliente.nombre_empresa}
-            direccion={cliente.direccion}
-            nit={cliente.nit}
-            desc_empresa={cliente.descripcion_empresa}
-            id={cliente.persona_id}
+            nombreswitch={'usuarios'}
+            nombre={`${user.nombre_1} ${user.nombre_2 ? user.nombre_2 : ''}`}
+            apellido={`${user.apellido_1} ${user.apellido_2 ? user.apellido_2 : ''}`}
+            telefono={user.telefono}
+            correo={user.correo}
+            direccion={user.direccion}
+            id={user.persona_id}
+            permisos={user.permisos}
+            alias={user.alias}
             reload={reload}
           />
         ))}
-      </View>
+      {/* </ScrollView> */}
+    </View>
+
     </ScrollView>
   );
+
 };
 
-export default Proveedores
+export default Usuarios
 
 const styles = StyleSheet.create({
   contenedor: {
