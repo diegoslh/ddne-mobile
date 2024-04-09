@@ -40,6 +40,7 @@ const Proveedores = ({ Opcion }) => {
         <CardPerson
           key={cliente.persona_id}
           icon={Clientimage}
+          nombreswitch={'proveedores'}
           nombre={`${cliente.nombre_1} ${cliente.nombre_2 ? cliente.nombre_2 : ''}`}
           apellido={`${cliente.apellido_1} ${cliente.apellido_2 ? cliente.apellido_2 : ''}`}
           telefono={cliente.telefono}

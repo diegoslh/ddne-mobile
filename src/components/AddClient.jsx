@@ -1,24 +1,47 @@
-import React, { useEffect } from 'react'
-import { StyleSheet, Text, View, BackHandler } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Modal, TextInput, ToastAndroid,  } from 'react-native'
+import { AntDesign } from '@expo/vector-icons';
+import { URI } from '../../config';
+import { SelectList } from 'react-native-dropdown-select-list'
+import  axios  from 'axios';
 
-import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
 
 const transparent = 'rgba(0,0,0,0.5)';
+const ENDPOINT = `http://${URI}/createclient`;
 
-const AddClient = () => {
+
+
+const AddClient = ({reload}) => {
   const [modalVisible, setModalVisible] = useState(false);
   
   const datos_iniciales = {
-    id: id,
-    nombres: nombres,
-    apellidos: apellidos,
-    telefono: telefono,
-    direccion: direccion,
-    email: email,
-    nit: nit, 
-    empresa: empresa,
-    desc_empresa: desc_empresa
+    persona_id: '12351',
+    nombres: 'jose miguel',
+    apellidos: 'perez gomez',
+    telefono: '3124725962',
+    direccion: 'direccion prueba',
+    email: 'email@gmail.com',
+    nit: null, 
+    empresa: 'empresa',
+    desc_empresa: 'desc', 
   }
+
+const [selected, setSelected] = useState('');
+
+const datatipodoc = (key, value) => {
+  setSelected({
+    ...selected,
+    [key]: value
+  });
+};
+
+  const tipodoc = [
+    { key: 'CC', value: 'Cedula de Ciudadania' },
+    { key: 'CE', value: 'Cedula de Extrangeria' },
+    { key: 'Otro', value: 'Otro' }
+  ];
+
+
 
   const [data, setData] = useState(datos_iniciales);
 
@@ -29,10 +52,49 @@ const AddClient = () => {
     });
   };
 
+  const handleSubmit= async () => {
+    console.log('Entro al fomulario');
+    // const postdata = selected.concat(data);
+    console.log(selected)
+    console.log(datos_iniciales)
+
+    // try {
+
+    //   // const postdata = {
+    //   //   ...selected,
+    //   //   ...data
+    //   // };
+
+
+
+    //   const response = await axios.post(`${ENDPOINT}`, postdata);
+    //   console.log(response)
+
+    //   if (response.data.success) {
+    //     ToastAndroid.show('Se ha añadido el cliente correctamente', ToastAndroid.LONG);
+    //     setModalVisible(false);
+    //     reload();
+    //   } else {
+    //     ToastAndroid.show('No se ha podido añadir al cliente', ToastAndroid.LONG);
+    //     setModalVisible(false);
+    //   }
+    // } catch (error) {
+    //   ToastAndroid('Ha ocurrido un error al enviar los datos', ToastAndroid.LONG);
+    // }
+  };
+
+
   return (
     <>
-      <TouchableOpacity onPress={() => setModalVisible(true)}>
-        <Feather name="edit-3" size={24} color="black" />
+      <TouchableOpacity
+        onPress={() => setModalVisible(true)}
+        style={{
+          position: "absolute",
+          right: 10,
+          bottom: 10,
+        }}
+      >
+        <AntDesign name="adduser" size={24} color="black" />
       </TouchableOpacity>
 
       <Modal
@@ -46,24 +108,33 @@ const AddClient = () => {
           onPress={() => setModalVisible(false)}
         >
           <View style={styles.modalView}>
-
             {/* // Formulario -------------------------------------------------- */}
             <View style={styles.container}>
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>N° Identificacion</Text>
                 <TextInput
                   style={styles.input}
-                  value={data.id}
-                  onChangeText={(value) => dataInto('id', value)}
+                  value={data.persona_id}
+                  onChangeText={(value) => dataInto("persona_id", value)}
                 />
               </View>
+
+              <View style={styles.inputContainer}>
+                <SelectList 
+                  data={tipodoc}
+                  setSelected={setSelected}
+                  onChangeText={dataInto}
+                  placeholder='Tipo de documento'
+                />
+              </View>
+
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Nombres</Text>
                 <TextInput
                   style={styles.input}
                   value={data.nombres}
-                  onChangeText={(value) => dataInto('nombres', value)}
+                  onChangeText={(value) => dataInto("nombres", value)}
                 />
               </View>
 
@@ -72,7 +143,7 @@ const AddClient = () => {
                 <TextInput
                   style={styles.input}
                   value={data.apellidos}
-                  onChangeText={(value) => dataInto('apellidos', value)}
+                  onChangeText={(value) => dataInto("apellidos", value)}
                 />
               </View>
 
@@ -81,43 +152,51 @@ const AddClient = () => {
                 <TextInput
                   style={styles.input}
                   value={data.telefono}
-                  onChangeText={(value) => dataInto('telefono', value)}
+                  onChangeText={(value) => dataInto("telefono", value)}
                 />
-              </View>              
+              </View>
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Email</Text>
                 <TextInput
                   style={styles.input}
                   value={data.email}
-                  onChangeText={(value) => dataInto('email', value)}
+                  onChangeText={(value) => dataInto("email", value)}
                 />
               </View>
 
-              {/* <View style={styles.inputContainer}>
+              <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Direccion</Text>
                 <TextInput
                   style={styles.input}
                   value={data.direccion}
-                  onChangeText={(value) => dataInto('direccion', value)}
+                  onChangeText={(value) => dataInto("direccion", value)}
                 />
               </View>
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>NIT</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} 
+                onChangeText={(value) => dataInto("nit", value)}
+                />
+
               </View>
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Empresa</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} 
+                onChangeText={(value) => dataInto("empresa", value)}
+                />
+
               </View>
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Descripcion</Text>
-                <TextInput style={styles.input} />
-              </View> */}
+                <TextInput style={styles.input} 
+                onChangeText={(value) => dataInto("desc_empresa", value)}
+                />
 
+              </View>
             </View>
 
             {/* Modal Footer ---------------------------------------------------- */}
@@ -143,14 +222,14 @@ const AddClient = () => {
                     fontWeight: "bold",
                   }}
                   onPress={() => {
+                    handleSubmit();
                     setModalVisible(false);
                   }}
                 >
-                  Editar
+                  Añadir
                 </Text>
               </TouchableOpacity>
             </View>
-
           </View>
         </View>
       </Modal>
@@ -171,7 +250,8 @@ const styles = StyleSheet.create({
     padding: 15,
     width: '90%',
     borderRadius: 10,
-    height: 460
+    height: 700,
+    marginBottom: 15
   },
   cerrar: {
     borderColor: 'blue',
