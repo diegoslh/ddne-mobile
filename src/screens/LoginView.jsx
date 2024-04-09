@@ -31,7 +31,7 @@ const LoginView = () => {
   const dataInto = (key, value) => {
     setFormData({
       ...formData,
-      [key]: value
+      [key]: value.trim()
     });
   };
 
@@ -141,12 +141,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc'
   },
   logoContainer: {
-    // borderWidth: 1, s 
+    // borderWidth: 1, 
     width: '60%',
     height: 90,
     alignSelf: 'center',
     opacity: 1,
-    marginTop: '30%'
+    marginTop: '15%'
   },
   logo: {
     width: '100%',
@@ -192,6 +192,9 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     paddingHorizontal: 22,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    paddingBottom: '25%'
   },
   label: {
     fontSize: 16,
