@@ -54,7 +54,7 @@ function Transacciones({ Opcion }) {
                 
                 {
                     transacciones.map((transaccion, index) => (
-                        <View style={styles.card_registro}>
+                        <View style={styles.card_registro} key={index}>
                             <TouchableOpacity
                                 onPress={() => toggleExpandir(index)}
                             >

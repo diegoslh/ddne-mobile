@@ -57,7 +57,7 @@ function Productos() {
           {
             productosExistencias.map((producto, index) => (
               <View style={styles.card_producto} key={index}>
-                <View style={styles.imagen_producto}>
+                <View style={styles.imagen_producto} key={producto.productos[0].id_producto}>
                   {
                     producto.productos[0].fk_tipo_producto === 'Jumbo' ? (
                       <Image style={styles.imagen} source={require('../assets/img/rollo.png')}/>
