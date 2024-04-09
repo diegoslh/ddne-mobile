@@ -48,12 +48,12 @@ const EditClient = ({ direccion, nit, reload, desc_empresa, nombres, apellidos, 
     try {
       const response = await axios.put(`${ENDPOINT}`, data);
       if (response.data.success) {
-            ToastAndroid.show('Se he editado correctamente el cliente', ToastAndroid.LONG);
+            ToastAndroid.show('Cliente Editado ✅', ToastAndroid.LONG);
             setModalVisible(false);
             reload()
         return
       } else {
-        ToastAndroid('Ha ocurrido un error al eliminar al cliente', ToastAndroid.LONG);
+        ToastAndroid('Error al editar Cliente ❌', ToastAndroid.LONG);
         setModalVisible(false);
       }
 
@@ -61,7 +61,8 @@ const EditClient = ({ direccion, nit, reload, desc_empresa, nombres, apellidos, 
       ToastAndroid.show(` ${response.data.message}`, ToastAndroid.SHORT)
 
     } catch (error) {
-      ToastAndroid('Ha ocurrido un error al enviar los datos', ToastAndroid.LONG);
+      ToastAndroid('Ha ocurrido un error al enviar los datos ✖️', ToastAndroid.LONG);
+      console.log(error);
     }
   };
 

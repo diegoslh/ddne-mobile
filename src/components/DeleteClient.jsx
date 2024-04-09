@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Modal, TouchableOpacity,
-  //  ToastAndroid 
+   ToastAndroid 
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
@@ -17,20 +17,21 @@ const DeleteClient = ({nombre, id, reload}) => {
       console.log(id)
 
       try {
-        console.log('Entro al try')
+        // console.log('Entro al try')
         const data = await axios.put(`${url}/${id}`);
 
 
         if (data.data.success){
-          ToastAndroid.show('Se ha eliminado el cliente correctamente', ToastAndroid.LONG);
+          ToastAndroid.show('Cliente Eliminado ✅', ToastAndroid.LONG);
           reload()
           setModalVisible(false);
         } else {
-          ToastAndroid.show('NO se ha podido eliminar al cliente', ToastAndroid.LONG);
+          ToastAndroid.show('Error al eliminar Cliente ❌', ToastAndroid.LONG);
           setModalVisible(false);
         }
       } catch (error) {
-        ToastAndroid.show('Error al enviar datos', ToastAndroid.LONG)
+        ToastAndroid.show('Error al enviar datos ✖️', ToastAndroid.LONG)
+        console.log(error);
       }
     };
 

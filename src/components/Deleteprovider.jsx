@@ -17,20 +17,21 @@ const DeleteProvider = ({nombre, id, reload}) => {
       console.log(id)
 
       try {
-        console.log('Entro al try')
+        // console.log('Entro al try')
         const data = await axios.put(`${url}/${id}`);
 
 
         if (data.data.success){
-          ToastAndroid.show('Se ha eliminado el proveedor correctamente', ToastAndroid.LONG);
+          ToastAndroid.show('Proveedor Eliminado ✅', ToastAndroid.LONG);
           reload()
           setModalVisible(false);
         } else {
-          ToastAndroid.show('NO se ha podido eliminar al proveedor', ToastAndroid.LONG);
+          ToastAndroid.show('Error al eliminar Proveedor ❌', ToastAndroid.LONG);
           setModalVisible(false);
         }
       } catch (error) {
-        ToastAndroid.show('Error al enviar datos', ToastAndroid.LONG)
+        ToastAndroid.show('Error al enviar datos ✖️', ToastAndroid.LONG)
+        console.log(error);
       }
     };
 

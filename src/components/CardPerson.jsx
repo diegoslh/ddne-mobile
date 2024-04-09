@@ -60,11 +60,11 @@ const CardPerson = ({icon, nombre, apellido, telefono, correo, empresa, id, relo
     <View style={styles.card}>
       <Image source={icon} style={styles.icon}/>
       <View style={styles.info}>
-        <Text style={styles.llaves}>Nombre: <Text style={styles.llavesInfo}>{nombre}</Text></Text>
-        <Text style={styles.llaves}>Apellido: <Text style={styles.llavesInfo}>{apellido}</Text></Text>
-        <Text style={styles.llaves}>Telefono: <Text style={styles.llavesInfo}>{telefono}</Text></Text>
-        <Text style={styles.llaves}>Email: <Text style={styles.llavesInfo}>{correo}</Text></Text>
-        <Text style={styles.llaves}>Empresa: <Text style={styles.llavesInfo}>{empresa}</Text></Text>
+        <Text style={styles.llaves}>Nombre:    <Text style={styles.llavesInfo}>{nombre}</Text></Text>
+        <Text style={styles.llaves}>Apellido:   <Text style={styles.llavesInfo}>{apellido}</Text></Text>
+        <Text style={styles.llaves}>Telefono:  <Text style={styles.llavesInfo}>{telefono}</Text></Text>
+        <Text style={styles.llaves}>Email:         <Text style={styles.llavesInfo}>{correo}</Text></Text>
+        <Text style={styles.llaves}>Empresa:   <Text style={styles.llavesInfo}>{empresa}</Text></Text>
       </View>
 
         {modalrender}

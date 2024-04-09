@@ -8,9 +8,9 @@ import { URI } from '../../config';
 const transparent = 'rgba(0,0,0,0.5)';
 
 // API 🌐
-const ENDPOINT = `${URI}/createclient`;
+const ENDPOINT = `${URI}/createprovider`;
 
-const AddClient = ({ reload }) => {
+const AddProvider = ({ reload }) => {
   //🔸 Manejo de apertura para Modal
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -18,14 +18,14 @@ const AddClient = ({ reload }) => {
   const datos_iniciales = {
     tipo_id: '',
     identificacion: '',
-    nombres: 'Arturo',
-    apellidos: 'Perez Gomez',
-    telefono: '3124725962',
+    nombres: 'Victor Manuelle',
+    apellidos: 'Lopez Orjuela',
+    telefono: '3113256452',
     direccion: 'direccion prueba',
     email: 'email@gmail.com',
     nit: '800',
     empresa: 'Empresa S.A.S',
-    descEmpresa: 'Empresa Cliente',
+    descEmpresa: 'Empresa Proveedora',
   }
 
   const [data, setData] = useState(datos_iniciales);
@@ -53,8 +53,8 @@ const AddClient = ({ reload }) => {
     });
   }, [selected])
 
-  //🔸 Validación Datos
-  const validacion_data = () => {
+   //🔸 Validación Datos
+   const validacion_data = () => {
     const regex_validation = /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9\s.@-]+$/;
     let success = true;
     const errores = ['✖️ Datos no válidos:', ''];
@@ -82,30 +82,27 @@ const AddClient = ({ reload }) => {
 
   //🔸 Envio de Datos API
   const handleSubmit = async () => {
-
     try {
-      // console.log(data)
-      // console.log(selected) //CC
+    // console.log(data)
+    // console.log(selected) //CC
 
       const response = await axios.post(`${ENDPOINT}`, data, {
         validateStatus: function (status) {
           return status < 500; // Resuelve solo si el código de estado es menor que 500
-        }
-      });
+        }});
       // console.log(response);
 
       if (response.data.success) {
-        ToastAndroid.show('Cliente Creado ✅', ToastAndroid.LONG);
+        ToastAndroid.show('Proveedor Creado ✅', ToastAndroid.LONG);
         setModalVisible(false);
         setData(datos_iniciales)
         reload();
       } else {
-        // ToastAndroid.show(`No se ha podido añadir al cliente ${response.data.message}`, ToastAndroid.LONG);
+        // ToastAndroid.show(`No se ha podido añadir al proveedor ${response.data.message}`, ToastAndroid.LONG);
         Alert.alert(`❌ ${response.data.message}`);
         console.log(response.data);
         setModalVisible(false);
       }
-
     } catch (error) {
       ToastAndroid.show('Ha ocurrido un error al enviar los datos ❌', ToastAndroid.LONG);
       console.log(error)
@@ -125,7 +122,7 @@ const AddClient = ({ reload }) => {
           padding: 4
         }}
       >
-        <AntDesign name="adduser" size={24} color="black" />
+        <AntDesign name="adduser" size={24} color="#0766AD" />
       </TouchableOpacity>
 
       <Modal
@@ -137,7 +134,7 @@ const AddClient = ({ reload }) => {
         <ScrollView contentContainerStyle={styles.scrollView}>
           <View style={styles.modalView}>
 
-            <Text style={styles.tituloModal}>Crear Cliente</Text>
+            <Text style={styles.tituloModal}>Crear Proveedor</Text>
 
             <View style={styles.container}>
               <View style={{ maxHeight: 210, paddingBottom: 12 }}>
@@ -154,7 +151,6 @@ const AddClient = ({ reload }) => {
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>N° Identificacion</Text>
                 <TextInput
-                  required
                   style={styles.input}
                   value={data.identificacion}
                   keyboardType="numeric"
@@ -263,7 +259,7 @@ const AddClient = ({ reload }) => {
                     setModalVisible(false);
                   }}
                 >
-                  Enviar
+                  Añadir
                 </Text>
               </TouchableOpacity>
             </View>
@@ -348,4 +344,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddClient;
+export default AddProvider;

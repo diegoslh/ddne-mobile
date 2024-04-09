@@ -27,7 +27,7 @@ function Inventarios () {
     //🔸 Permisos del Usuario
     const data_user = useUserSession();
     const permisos_user = data_user ? data_user.allowed : []; 
-    console.log('data_user en Inventarios', permisos_user)
+    // console.log('data_user en Inventarios', permisos_user)
 
     return (
         <View style={styles.contenedor}>

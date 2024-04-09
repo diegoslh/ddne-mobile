@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View, Modal } from 'react-native'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
 import CardPerson from './CardPerson'
 import Clientimage from '../assets/img/client-azul.png'
 import axios from 'axios'
 import { URI } from '../../config'
+import AddProvider from './AddProvider'
 
 const Proveedores = ({ Opcion }) => {
 
@@ -31,29 +32,32 @@ const Proveedores = ({ Opcion }) => {
   }
 
   return (
-    <View style={styles.contenedor}>
-      <View style={styles.container_title}>
-        <Text style={styles.title_page}>Proveedores</Text>
-      </View>
+    <ScrollView>
+      <View style={styles.contenedor}>
+        <View style={styles.container_title}>
+          <Text style={styles.title_page}>Proveedores</Text>
+          <AddProvider reload={reload} />
+        </View>
 
-      {clientes.map(cliente => (
-        <CardPerson
-          key={cliente.persona_id}
-          icon={Clientimage}
-          nombreswitch={'proveedores'}
-          nombre={`${cliente.nombre_1} ${cliente.nombre_2 ? cliente.nombre_2 : ''}`}
-          apellido={`${cliente.apellido_1} ${cliente.apellido_2 ? cliente.apellido_2 : ''}`}
-          telefono={cliente.telefono}
-          correo={cliente.correo}
-          empresa={cliente.nombre_empresa}
-          direccion={cliente.direccion}
-          nit={cliente.nit}
-          desc_empresa={cliente.descripcion_empresa}
-          id={cliente.persona_id}
-          reload={reload}
-        />
-      ))}
-    </View>
+        {clientes.map(cliente => (
+          <CardPerson
+            key={cliente.persona_id}
+            icon={Clientimage}
+            nombreswitch={'proveedores'}
+            nombre={`${cliente.nombre_1} ${cliente.nombre_2 ? cliente.nombre_2 : ''}`}
+            apellido={`${cliente.apellido_1} ${cliente.apellido_2 ? cliente.apellido_2 : ''}`}
+            telefono={cliente.telefono}
+            correo={cliente.correo}
+            empresa={cliente.nombre_empresa}
+            direccion={cliente.direccion}
+            nit={cliente.nit}
+            desc_empresa={cliente.descripcion_empresa}
+            id={cliente.persona_id}
+            reload={reload}
+          />
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -70,7 +74,7 @@ const styles = StyleSheet.create({
     gap: 10
   },
   container_title: {
-    height: '6%',
+    height: 50,
     width: '106%',
     justifyContent: 'center',
     paddingHorizontal: 10,
