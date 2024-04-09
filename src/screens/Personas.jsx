@@ -7,6 +7,7 @@ import useUserSession from '../hooks/useUserSession';
 import NotAllowed from './NotAllowed';
 import Clientes from '../components/Clientes';
 import Proveedores from '../components/Proveedores';
+import Usuarios from '../components/Usuarios';
 
 import proveedorImg from '../assets/img/proveedor.png';
 import clienteImg from '../assets/img/cliente.png';
@@ -38,7 +39,7 @@ function Personas() {
                     <Clientes Opcion={setOpcion} /> : <NotAllowed Opcion={setOpcion}/>
                 ) : opcion === 'Usuarios' ? (
                     permisos_user.includes('Usuarios') ?
-                    <Clientes Opcion={setOpcion} /> : <NotAllowed Opcion={setOpcion}/>
+                    <Usuarios Opcion={setOpcion} /> : <NotAllowed Opcion={setOpcion}/>
                 ) : (
                     <View style={styles.opciones}>
                         <View style={styles.tarjeta}>
@@ -79,7 +80,7 @@ function Personas() {
                             </TouchableOpacity>
                         </View>
 
-                        {/* <View style={styles.tarjeta}>
+                        <View style={styles.tarjeta}>
                             <TouchableOpacity
                                 style={styles.boton}
                                 onPress={() => setOpcion('Usuarios')}
@@ -96,7 +97,7 @@ function Personas() {
                                 </View>
                                 <Text style={styles.tittle}>Usuarios</Text>
                             </TouchableOpacity>
-                        </View> */}
+                        </View>
                         
                         <Text style={styles.logo}>DDNE Inventory</Text>
                     </View>

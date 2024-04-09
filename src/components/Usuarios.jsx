@@ -4,17 +4,16 @@ import useHardwareBackHandler from '../hooks/useHardwareBackHandler'
 import CardPerson from './CardPerson'
 import Clientimage from '../assets/img/client-azul.png'
 import axios from 'axios'
-import AddClient from '../components/AddClient'
 import { URI } from '../../config'
 
-const Clientes = ({ Opcion }) => {
+const Usuarios = ({ Opcion }) => {
 
   useHardwareBackHandler({ Opcion })
 
   const [clientes, setClientes] = useState([]);
 
   const getClientes = () => {
-    axios.get(`${URI}/clientes`)
+    axios.get(`${URI}/usuarios`)
       .then(response => {
         setClientes(response.data.data);
       })
@@ -37,25 +36,23 @@ const Clientes = ({ Opcion }) => {
     <View style={styles.contenedor}>
 
       <View style={styles.container_title}>
-        <Text style={styles.title_page}>Clientes</Text>
-        <AddClient reload={reload} />
+        <Text style={styles.title_page}>Usuarios</Text>
       </View>
 
       {/* <ScrollView > */}
-        {clientes.map(cliente => (
+        {clientes.map(user => (
           <CardPerson
-            key={cliente.persona_id}
+            key={user.persona_id}
             icon={Clientimage}
-            nombreswitch={'clientes'}
-            nombre={`${cliente.nombre_1} ${cliente.nombre_2 ? cliente.nombre_2 : ''}`}
-            apellido={`${cliente.apellido_1} ${cliente.apellido_2 ? cliente.apellido_2 : ''}`}
-            telefono={cliente.telefono}
-            correo={cliente.correo}
-            empresa={cliente.nombre_empresa}
-            direccion={cliente.direccion}
-            nit={cliente.nit}
-            desc_empresa={cliente.descripcion_empresa}
-            id={cliente.persona_id}
+            nombreswitch={'usuarios'}
+            nombre={`${user.nombre_1} ${user.nombre_2 ? user.nombre_2 : ''}`}
+            apellido={`${user.apellido_1} ${user.apellido_2 ? user.apellido_2 : ''}`}
+            telefono={user.telefono}
+            correo={user.correo}
+            direccion={user.direccion}
+            id={user.persona_id}
+            permisos={user.permisos}
+            alias={user.alias}
             reload={reload}
           />
         ))}
@@ -67,7 +64,7 @@ const Clientes = ({ Opcion }) => {
 
 };
 
-export default Clientes
+export default Usuarios
 
 const styles = StyleSheet.create({
   contenedor: {
